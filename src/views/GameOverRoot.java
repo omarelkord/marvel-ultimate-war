@@ -14,9 +14,9 @@ public class GameOverRoot extends VBox {
     Player player;
     public GameOverRoot(Player player){
         this.player = player;
-        this.setStyle("-fx-background-image: url('views/gradient.jpg');");
+        this.setStyle("-fx-background-image: url('views/bg_imgs/gradient.jpg');");
         Button b = new Button();
-        b.getStylesheets().add(this.getClass().getResource("gameover.css").toExternalForm());
+        b.getStylesheets().add(this.getClass().getResource("css/gameover.css").toExternalForm());
         Label label = new Label(player.getName() + " WON");
         label.setFont(new Font("Fantasy",45));
         label.setTextFill(Color.WHITESMOKE);
