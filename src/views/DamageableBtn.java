@@ -27,7 +27,7 @@ public class DamageableBtn extends VBox {
 
         ProgressBar hpBar = new ProgressBar(currValue/maxValue);
         hpBar.setPrefSize(85,12);
-        hpBar.getStylesheets().add(getClass().getResource("progress.css").toExternalForm());
+        hpBar.getStylesheets().add(getClass().getResource("css/progress.css").toExternalForm());
         hpBar.getStyleClass().add("green-bar");
 
 
@@ -45,7 +45,7 @@ public class DamageableBtn extends VBox {
 
         button = new Button();
 
-        button.getStylesheets().add(this.getClass().getResource(stylesheet + ".css").toExternalForm());
+        button.getStylesheets().add(this.getClass().getResource("css/" + stylesheet + ".css").toExternalForm());
         button.getStyleClass().add(styleClass);
 
         button.setOnMouseEntered(e -> {

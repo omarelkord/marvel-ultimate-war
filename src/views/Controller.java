@@ -76,18 +76,14 @@ public class Controller {
         fadeOut(mainFrame.startingRoot, mainFrame.selectionRoot);
     }
 
-
-    private static void stats(int i) {
-    }
-
     public static void onStatsButton(int i) {
 
         Champion c = getAvailableChampions().get(i);
 
-        //disable all buttons except current
-        mainFrame.selectionRoot.hboxStats.setStyle("-fx-background-image: url('views/" + c.getName().substring(0, 2) + ".png');");
+//        disable all buttons except current
+        mainFrame.selectionRoot.hboxStats.setStyle("-fx-background-image: url('views/champ_imgs/" + c.getName().substring(0, 2) + ".png');");
 
-//            mainFrame.selectionRoot.hboxStats.getStylesheets().add(mainFrame.selectionRoot.getClass().getResource("stats.css").toExternalForm());
+//            mainFrame.selectionRoot.hboxStats.getStylesheets().add(mainFrame.selectionRoot.getClass().getResource("css/stats.css").toExternalForm());
 //            mainFrame.selectionRoot.hboxStats.getStyleClass().add(c.getName().substring(0, 2));
 
         disableAllButtonsExcept(i);
@@ -213,21 +209,21 @@ public class Controller {
             Champion c = mainFrame.game.getFirstPlayer().getTeam().get(i);
 
             if (c instanceof Hero)
-                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/leaderAbility2.png');");
+                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbility2.png');");
             else if (c instanceof Villain)
-                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/leaderAbility2.png');");
+                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbility2.png');");
             else
-                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/leaderAbility2.png');");
+                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbility2.png');");
 
         } else {
             Champion c = mainFrame.game.getSecondPlayer().getTeam().get(i);
 
             if (c instanceof Hero)
-                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/leaderAbility2.png');");
+                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbility2.png');");
             else if (c instanceof Villain)
-                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/leaderAbility2.png');");
+                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbility2.png');");
             else
-                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/leaderAbility2.png');");
+                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbility2.png');");
         }
     }
 
@@ -268,23 +264,23 @@ public class Controller {
 //    }
 
 
-    public static void createStats(Champion c) {
-
-        MyRectangle hp = new MyRectangle("HP", c.getMaxHP(), c.getMaxHP());
-        MyRectangle mana = new MyRectangle("Mana", c.getMana(), c.getMana());
-        MyRectangle ap = new MyRectangle("Action Points", c.getCurrentActionPoints(), c.getMaxActionPointsPerTurn());
-        MyRectangle speed = new MyRectangle("Speed", c.getSpeed(), c.getSpeed());
-        MyRectangle range = new MyRectangle("Attack Range", c.getAttackRange(), c.getAttackRange());
-        MyRectangle damage = new MyRectangle("Attack Damage", c.getAttackDamage(), c.getAttackDamage());
-
-        ArrayList<MyRectangle> rectangles = new ArrayList<>();
-        rectangles.add(hp);
-        rectangles.add(mana);
-        rectangles.add(ap);
-        rectangles.add(speed);
-        rectangles.add(range);
-        rectangles.add(damage);
-    }
+//    public static void createStats(Champion c) {
+//
+//        MyRectangle hp = new MyRectangle("HP", c.getMaxHP(), c.getMaxHP());
+//        MyRectangle mana = new MyRectangle("Mana", c.getMana(), c.getMana());
+//        MyRectangle ap = new MyRectangle("Action Points", c.getCurrentActionPoints(), c.getMaxActionPointsPerTurn());
+//        MyRectangle speed = new MyRectangle("Speed", c.getSpeed(), c.getSpeed());
+//        MyRectangle range = new MyRectangle("Attack Range", c.getAttackRange(), c.getAttackRange());
+//        MyRectangle damage = new MyRectangle("Attack Damage", c.getAttackDamage(), c.getAttackDamage());
+//
+//        ArrayList<MyRectangle> rectangles = new ArrayList<>();
+//        rectangles.add(hp);
+//        rectangles.add(mana);
+//        rectangles.add(ap);
+//        rectangles.add(speed);
+//        rectangles.add(range);
+//        rectangles.add(damage);
+//    }
 
     public static void updateTurnOrder() {
 
@@ -297,7 +293,7 @@ public class Controller {
 
         for (Champion c : a) {
             Button b = new Button();
-            b.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("turnOrder.css").toExternalForm());
+            b.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/turn-order.css").toExternalForm());
             b.getStyleClass().add(c.getName().substring(0, 2));
 
 
@@ -467,7 +463,7 @@ public class Controller {
 
         GridPane gridPane = new GridPane();
 
-        gridPane.setStyle("-fx-background-image: url('views/" + mainFrame.boardRoot.mapChosen + "Map2.png');");
+        gridPane.setStyle("-fx-background-image: url('views/bg_imgs/" + mainFrame.boardRoot.mapChosen + "Map2.png');");
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
@@ -960,67 +956,67 @@ public class Controller {
             return "Antihero";
     }
 
-    public static HBox getStats(Champion c) {
+//    public static HBox getStats(Champion c) {
+//
+//        Label nameLabel = new Label(c.getName());
+//        Label typeLabel = new Label(getChampType(c));
+//
+//        MyCircle hp = new MyCircle("HP", c.getCurrentHP());
+//        MyCircle mana = new MyCircle("Mana", c.getMana());
+//        MyCircle ap;
+//
+//        if (c == mainFrame.game.getCurrentChampion())
+//            ap = new MyCircle("Current AP", c.getCurrentActionPoints());
+//        else
+//            ap = new MyCircle("Max AP", c.getMaxActionPointsPerTurn());
+//        MyCircle speed = new MyCircle("Speed", c.getSpeed());
+//        MyCircle range = new MyCircle("Range", c.getAttackRange());
+//        MyCircle damage = new MyCircle("Damage", c.getAttackDamage());
+//
+//        HBox res = new HBox(10);
+//        res.setAlignment(Pos.CENTER);
+//        res.getChildren().addAll(nameLabel, typeLabel, hp, mana, ap, speed, range, damage);
+//
+//        return res;
+//    }
 
-        Label nameLabel = new Label(c.getName());
-        Label typeLabel = new Label(getChampType(c));
-
-        MyCircle hp = new MyCircle("HP", c.getCurrentHP());
-        MyCircle mana = new MyCircle("Mana", c.getMana());
-        MyCircle ap;
-
-        if (c == mainFrame.game.getCurrentChampion())
-            ap = new MyCircle("Current AP", c.getCurrentActionPoints());
-        else
-            ap = new MyCircle("Max AP", c.getMaxActionPointsPerTurn());
-        MyCircle speed = new MyCircle("Speed", c.getSpeed());
-        MyCircle range = new MyCircle("Range", c.getAttackRange());
-        MyCircle damage = new MyCircle("Damage", c.getAttackDamage());
-
-        HBox res = new HBox(10);
-        res.setAlignment(Pos.CENTER);
-        res.getChildren().addAll(nameLabel, typeLabel, hp, mana, ap, speed, range, damage);
-
-        return res;
-    }
-
-    public static HBox getAbilityStats(Ability a) {
-
-        MyCircle manaCost = new MyCircle("Mana Cost", a.getManaCost());
-        MyCircle reqAP = new MyCircle("AP", a.getRequiredActionPoints());
-        MyCircle currCool = new MyCircle("Current Cooldown", a.getCurrentCooldown());
-        MyCircle baseCool = new MyCircle("Base Cooldown", a.getBaseCooldown());
-        MyCircle range = new MyCircle("Range", a.getCastRange());
-
-        HBox res = new HBox(10);
-        res.setAlignment(Pos.CENTER);
-
-
-        MyCircle healAmnt;
-        MyCircle dmgAmnt;
-        Button effectButton;
-        Label type = new Label();
-        Label AOF = new Label(a.getCastArea() + "");
-
-        if (a instanceof HealingAbility) {
-            type.setText("HEALING");
-            healAmnt = new MyCircle("Amount", ((HealingAbility) a).getHealAmount());
-            res.getChildren().addAll(type, healAmnt);
-        } else if (a instanceof DamagingAbility) {
-            type.setText("DAMAGING");
-            dmgAmnt = new MyCircle("Amount", ((DamagingAbility) a).getDamageAmount());
-            res.getChildren().addAll(type, dmgAmnt);
-        } else {
-            CrowdControlAbility cc = (CrowdControlAbility) a;
-            type.setText("CROWDCONTROL");
-            effectButton = new Button(cc.getEffect().getName() + ", " + cc.getEffect().getDuration());
-            res.getChildren().addAll(type, effectButton);
-        }
-
-        res.getChildren().addAll(AOF, manaCost, reqAP, currCool, baseCool, range);
-
-        return res;
-    }
+//    public static HBox getAbilityStats(Ability a) {
+//
+//        MyCircle manaCost = new MyCircle("Mana Cost", a.getManaCost());
+//        MyCircle reqAP = new MyCircle("AP", a.getRequiredActionPoints());
+//        MyCircle currCool = new MyCircle("Current Cooldown", a.getCurrentCooldown());
+//        MyCircle baseCool = new MyCircle("Base Cooldown", a.getBaseCooldown());
+//        MyCircle range = new MyCircle("Range", a.getCastRange());
+//
+//        HBox res = new HBox(10);
+//        res.setAlignment(Pos.CENTER);
+//
+//
+//        MyCircle healAmnt;
+//        MyCircle dmgAmnt;
+//        Button effectButton;
+//        Label type = new Label();
+//        Label AOF = new Label(a.getCastArea() + "");
+//
+//        if (a instanceof HealingAbility) {
+//            type.setText("HEALING");
+//            healAmnt = new MyCircle("Amount", ((HealingAbility) a).getHealAmount());
+//            res.getChildren().addAll(type, healAmnt);
+//        } else if (a instanceof DamagingAbility) {
+//            type.setText("DAMAGING");
+//            dmgAmnt = new MyCircle("Amount", ((DamagingAbility) a).getDamageAmount());
+//            res.getChildren().addAll(type, dmgAmnt);
+//        } else {
+//            CrowdControlAbility cc = (CrowdControlAbility) a;
+//            type.setText("CROWDCONTROL");
+//            effectButton = new Button(cc.getEffect().getName() + ", " + cc.getEffect().getDuration());
+//            res.getChildren().addAll(type, effectButton);
+//        }
+//
+//        res.getChildren().addAll(AOF, manaCost, reqAP, currCool, baseCool, range);
+//
+//        return res;
+//    }
 
     public static HBox getEffectStats(Champion c) {
 
@@ -1112,7 +1108,7 @@ public class Controller {
         bar.getStyleClass().clear();
         bar.getStylesheets().clear();
 
-        bar.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("fonts/orange-button.css").toExternalForm());
+        bar.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/bar-colors.css").toExternalForm());
         bar.getStyleClass().add(barStyleClass);
 
     }
@@ -1252,7 +1248,7 @@ public class Controller {
         for(int i=1; i<=max; i++){
             ProgressBar bar = new ProgressBar();
             bar.setPrefSize(15, 15);
-            bar.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+            bar.getStylesheets().add(BigTest.class.getResource("css/bar-colors.css").toExternalForm());
             bar.getStyleClass().add("shiny-orange");
 
             if(dir.equals("L")){
@@ -1414,7 +1410,21 @@ public class Controller {
                 secondBtn.setTooltip(t);
                 String text = getAbilityStatsToolTip(a);
                 t.setText(text);
+
                 secondBtn.setOnAction(e -> onCastAbility(a.getName()));
+
+                secondBtn.setOnMouseEntered(e -> {
+                    addRings(mainFrame.game.getPotentialTargets(a));
+                });
+
+                secondBtn.setOnMouseExited(e -> {
+
+                    mainFrame.boardRoot.gifGridpane.getChildren().clear();
+                    mainFrame.boardRoot.center.getChildren().remove(mainFrame.boardRoot.gifGridpane);
+                    mainFrame.boardRoot.borderPane.setCenter(mainFrame.boardRoot.center);
+
+                });
+
                 secondBtn.getStyleClass().clear();
                 secondBtn.getStyleClass().add(c.getName().substring(0,2) + "-Ability-" + (i+1) );
 

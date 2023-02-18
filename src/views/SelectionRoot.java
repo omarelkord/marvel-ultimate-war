@@ -42,16 +42,15 @@ public class SelectionRoot extends VBox {
         firstClick = true;
         select = new Button();
         select.setPrefSize(100, 30);
-        select.getStylesheets().add(this.getClass().getResource("selectAndBack.css").toExternalForm());
+        select.getStylesheets().add(this.getClass().getResource("css/select-back-btns.css").toExternalForm());
         select.getStyleClass().add("select");
 
         back = new Button();
-        back.getStylesheets().add(this.getClass().getResource("selectAndBack.css").toExternalForm());
+        back.getStylesheets().add(this.getClass().getResource("css/select-back-btns.css").toExternalForm());
         back.getStyleClass().add("back");
         back.setPrefSize(100, 30);
 
-        // this.setStyle("-fx-background-image: url('views/potentialbg3.jpg');");
-        this.setStyle("-fx-background-image: url('views/selectionBG.png');");
+        this.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
 
         championButtons = new HBox(-110);
 
@@ -88,9 +87,9 @@ public class SelectionRoot extends VBox {
             Button button = new Button();
             buttonList.add(button);
             int finalI = i;
-//            button.setStyle("-fx-background-image: url('views/captainAmericaButton.png');");
+
             button.setOnAction(e -> onStatsButton(finalI));
-            button.getStylesheets().add(this.getClass().getResource("spider.css").toExternalForm());
+            button.getStylesheets().add(this.getClass().getResource("css/selection-btns.css").toExternalForm());
             button.getStyleClass().add(c.getName().substring(0, 2));
             championButtons.getChildren().add(button);
             i++;

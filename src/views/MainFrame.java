@@ -5,14 +5,11 @@ package views;
 import engine.Game;
 import engine.Player;
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.VBox;
 
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -50,7 +47,7 @@ public class MainFrame extends Application {
 //
 //        startingRoot.getChildren().add( mediaView);
 
-        stage.getIcons().add(new Image("views/taskBarIcon.jpg"));
+        stage.getIcons().add(new Image("views/gen_imgs/taskBarIcon.jpg"));
         stage.setTitle("Marvel - Ultimate War!");
         stage.setScene(scene);
         stage.show();

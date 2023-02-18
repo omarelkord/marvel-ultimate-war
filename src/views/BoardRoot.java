@@ -1,13 +1,9 @@
 
 package views;
 
-import com.sun.tools.javac.Main;
 import engine.Game;
 import engine.PriorityQueue;
-import exceptions.NotEnoughResourcesException;
-import exceptions.UnallowedMovementException;
 import javafx.animation.FadeTransition;
-import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -18,16 +14,10 @@ import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import model.abilities.Ability;
 import model.world.Champion;
-import model.world.Damageable;
 
-import java.security.cert.PolicyNode;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -94,7 +84,7 @@ public class BoardRoot extends StackPane {
 
         borderPane = new BorderPane();
 
-        blackImg = new ImageView(new Image("views/black-img.png"));
+        blackImg = new ImageView(new Image("views/gen_imgs/black-img.png"));
 
         darknessEffect = new ColorAdjust();
         darknessEffect.setBrightness(-0.5);
@@ -107,7 +97,7 @@ public class BoardRoot extends StackPane {
 
         this.mapChosen = mapChosen;
 
-        this.setStyle("-fx-background-image: url('views/" + mapChosen + "BG" + ".jpg');");
+        this.setStyle("-fx-background-image: url('views/bg_imgs/" + mapChosen + "BG" + ".jpg');");
 
         abilityInfo = new HBox(10);
         abilityButtons = new HBox(10);
@@ -166,7 +156,7 @@ public class BoardRoot extends StackPane {
 
         firstHPLabel = new Label(firstChampion.getCurrentHP() + "/" + firstChampion.getMaxHP());
 
-        firstHPLabel.getStylesheets().add(BigTest.class.getResource("game-font.css").toExternalForm());
+        firstHPLabel.getStylesheets().add(BigTest.class.getResource("css/game-font.css").toExternalForm());
         firstHPLabel.getStyleClass().add("red");
         firstHPLabel.setPadding(new Insets(0,0,2,10));
 
@@ -174,7 +164,7 @@ public class BoardRoot extends StackPane {
         firstPlayerBar1 = new ProgressBar();
         firstPlayerBar1.setPrefSize(265,20);
         firstPlayerBar1.setProgress(1);
-        firstPlayerBar1.getStylesheets().add(BoardRoot.class.getResource("fonts/orange-button.css").toExternalForm());
+        firstPlayerBar1.getStylesheets().add(BoardRoot.class.getResource("css/bar-colors.css").toExternalForm());
         firstPlayerBar1.getStyleClass().add("shiny-green");
 
         StackPane firstHPStackpane = new StackPane();
@@ -182,7 +172,7 @@ public class BoardRoot extends StackPane {
         firstHPStackpane.setAlignment(Pos.CENTER_LEFT);
         firstHPStackpane.getChildren().addAll(firstPlayerBar1, firstHPLabel);
 
-        ImageView firstPlusImg = new ImageView(new Image("views/plus6.png"));
+        ImageView firstPlusImg = new ImageView(new Image("views/gen_imgs/plus_sign.png"));
 
         HBox firstHPRow = new HBox(5);
         firstHPRow.getChildren().addAll(firstPlusImg, firstHPStackpane);
@@ -190,7 +180,7 @@ public class BoardRoot extends StackPane {
         //
 
         firstManaLabel = new Label(firstChampion.getMana() + "/" + firstChampion.getMaxMana());
-        firstManaLabel.getStylesheets().add(BigTest.class.getResource("game-font.css").toExternalForm());
+        firstManaLabel.getStylesheets().add(BigTest.class.getResource("css/game-font.css").toExternalForm());
         firstManaLabel.getStyleClass().add("blue");
 
         firstManaLabel.setPadding(new Insets(0,0,2,10));
@@ -198,11 +188,11 @@ public class BoardRoot extends StackPane {
         firstPlayerBar2 = new ProgressBar();
         firstPlayerBar2.setPrefSize(215,20);
         firstPlayerBar2.setProgress(1);
-        firstPlayerBar2.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+        firstPlayerBar2.getStylesheets().add(BigTest.class.getResource("css/bar-colors.css").toExternalForm());
         firstPlayerBar2.getStyleClass().add("shiny-blue");
 
 
-        ImageView firstManaImg = new ImageView(new Image("views/mana_sign.png"));
+        ImageView firstManaImg = new ImageView(new Image("views/gen_imgs/mana_sign.png"));
 
         StackPane firstManaStackpane = new StackPane();
 
@@ -214,7 +204,7 @@ public class BoardRoot extends StackPane {
 
         //
 
-        ImageView firstLightningImg = new ImageView(new Image("views/lightning_sign2.png"));
+        ImageView firstLightningImg = new ImageView(new Image("views/gen_imgs/lightning_sign.png"));
 
         firstPlayerBar3 = createAPBar(firstChampion.getCurrentActionPoints(), firstChampion.getMaxActionPointsPerTurn(), "L");
 
@@ -225,11 +215,11 @@ public class BoardRoot extends StackPane {
         VBox firstPlayerBars = new VBox();
         firstPlayerBars.setPadding(new Insets(15,0,0,0));
         firstPlayerBars.getChildren().setAll(firstHPRow, firstManaRow, firstAPRow);
-        firstPlayerBars.getStylesheets().add(getClass().getResource("progress.css").toExternalForm());
+//        firstPlayerBars.getStylesheets().add(getClass().getResource("progress.css").toExternalForm());
 
 
         firstPlayerIcon = new Button();
-        firstPlayerIcon.getStylesheets().add(getClass().getResource("topLeftIcons.css").toExternalForm());
+        firstPlayerIcon.getStylesheets().add(getClass().getResource("css/top-left-icons.css").toExternalForm());
         firstPlayerIcon.getStyleClass().add(firstChampion.getName().substring(0,2));
 
 
@@ -241,18 +231,18 @@ public class BoardRoot extends StackPane {
 
         Button firstAbility1 = new Button();
         firstAbility1.setPrefSize(35,35);
-        firstAbility1.getStylesheets().add(getClass().getResource("abilities.css").toExternalForm());
+        firstAbility1.getStylesheets().add(getClass().getResource("css/abilities.css").toExternalForm());
         firstAbility1.getStyleClass().add(firstChampion.getName().substring(0,2) + "-Ability-1");
 
         Button firstAbility2 = new Button();
         firstAbility2.setPrefSize(35,35);
-        firstAbility2.getStylesheets().add(getClass().getResource("abilities.css").toExternalForm());
+        firstAbility2.getStylesheets().add(getClass().getResource("css/abilities.css").toExternalForm());
         firstAbility2.getStyleClass().add(firstChampion.getName().substring(0,2) + "-Ability-2");
 
 
         Button firstAbility3 = new Button();
         firstAbility3.setPrefSize(35,35);
-        firstAbility3.getStylesheets().add(getClass().getResource("abilities.css").toExternalForm());
+        firstAbility3.getStylesheets().add(getClass().getResource("css/abilities.css").toExternalForm());
         firstAbility3.getStyleClass().add(firstChampion.getName().substring(0,2) + "-Ability-3");
 
         firstPlayerAbilities = new HBox(-5);
@@ -273,7 +263,7 @@ public class BoardRoot extends StackPane {
         //SECOND PLAYER BARS
         secondHPLabel = new Label(secondChampion.getCurrentHP() + "/" + secondChampion.getMaxHP());
 
-        secondHPLabel.getStylesheets().add(BigTest.class.getResource("game-font.css").toExternalForm());
+        secondHPLabel.getStylesheets().add(BigTest.class.getResource("css/game-font.css").toExternalForm());
         secondHPLabel.getStyleClass().add("red");
         secondHPLabel.setPadding(new Insets(0,10,0,0));
 
@@ -281,7 +271,7 @@ public class BoardRoot extends StackPane {
         secondPlayerBar1 = new ProgressBar();
         secondPlayerBar1.setPrefSize(265,20);
         secondPlayerBar1.setProgress(1);
-        secondPlayerBar1.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+        secondPlayerBar1.getStylesheets().add(BigTest.class.getResource("css/bar-colors.css").toExternalForm());
         secondPlayerBar1.getStyleClass().add("shiny-green");
         secondPlayerBar1.setRotate(180);
 
@@ -290,7 +280,7 @@ public class BoardRoot extends StackPane {
         secondHPStackpane.setAlignment(Pos.CENTER_RIGHT);
         secondHPStackpane.getChildren().addAll(secondPlayerBar1, secondHPLabel);
 
-        ImageView secondPlusImg = new ImageView(new Image("views/plus6.png"));
+        ImageView secondPlusImg = new ImageView(new Image("views/gen_imgs/plus_sign.png"));
 
 
         HBox secondHPRow = new HBox(5);
@@ -300,7 +290,7 @@ public class BoardRoot extends StackPane {
         //
 
         secondManaLabel = new Label(secondChampion.getMana() + "/" + secondChampion.getMaxMana());
-        secondManaLabel.getStylesheets().add(BigTest.class.getResource("game-font.css").toExternalForm());
+        secondManaLabel.getStylesheets().add(BigTest.class.getResource("css/game-font.css").toExternalForm());
         secondManaLabel.getStyleClass().add("blue");
 
         secondManaLabel.setPadding(new Insets(0,10,0,0));
@@ -308,7 +298,7 @@ public class BoardRoot extends StackPane {
         secondPlayerBar2 = new ProgressBar();
         secondPlayerBar2.setPrefSize(215,20);
         secondPlayerBar2.setProgress(1);
-        secondPlayerBar2.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+        secondPlayerBar2.getStylesheets().add(BigTest.class.getResource("css/bar-colors.css").toExternalForm());
         secondPlayerBar2.getStyleClass().add("shiny-blue");
         secondPlayerBar2.setRotate(180);
 
@@ -316,7 +306,7 @@ public class BoardRoot extends StackPane {
         secondManaStackpane.setAlignment(Pos.CENTER_RIGHT);
         secondManaStackpane.getChildren().addAll(secondPlayerBar2, secondManaLabel);
 
-        ImageView secondManaImg = new ImageView(new Image("views/mana_sign.png"));
+        ImageView secondManaImg = new ImageView(new Image("views/gen_imgs/mana_sign.png"));
 
         HBox secondManaRow = new HBox(5);
         secondManaRow.setAlignment(Pos.CENTER_RIGHT);
@@ -326,7 +316,7 @@ public class BoardRoot extends StackPane {
 
         secondPlayerBar3 = createAPBar(secondChampion.getCurrentActionPoints(), secondChampion.getMaxActionPointsPerTurn(), "R");
 
-        ImageView secondLightningImg = new ImageView(new Image("views/lightning_sign2.png"));
+        ImageView secondLightningImg = new ImageView(new Image("views/gen_imgs/lightning_sign.png"));
 
 
         secondAPRow = new HBox(5);
@@ -338,11 +328,11 @@ public class BoardRoot extends StackPane {
         VBox secondPlayerBars = new VBox();
         secondPlayerBars.setPadding(new Insets(15,0,0,0));
         secondPlayerBars.getChildren().setAll(secondHPRow, secondManaRow, secondAPRow);
-        secondPlayerBars.getStylesheets().add(getClass().getResource("progress.css").toExternalForm());
+//        secondPlayerBars.getStylesheets().add(getClass().getResource("progress.css").toExternalForm());
 
 
         secondPlayerIcon = new Button();
-        secondPlayerIcon.getStylesheets().add(getClass().getResource("topRightIcons.css").toExternalForm());
+        secondPlayerIcon.getStylesheets().add(getClass().getResource("css/top-right-icons.css").toExternalForm());
         secondPlayerIcon.getStyleClass().add(secondChampion.getName().substring(0,2));
 
 
@@ -354,17 +344,17 @@ public class BoardRoot extends StackPane {
 
         Button secondAbility1 = new Button();
         secondAbility1.setPrefSize(35,35);
-        secondAbility1.getStylesheets().add(getClass().getResource("abilities.css").toExternalForm());
+        secondAbility1.getStylesheets().add(getClass().getResource("css/abilities.css").toExternalForm());
         secondAbility1.getStyleClass().add(secondChampion.getName().substring(0,2) + "-Ability-1");
 
         Button secondAbility2 = new Button();
         secondAbility2.setPrefSize(35,35);
-        secondAbility2.getStylesheets().add(getClass().getResource("abilities.css").toExternalForm());
+        secondAbility2.getStylesheets().add(getClass().getResource("css/abilities.css").toExternalForm());
         secondAbility2.getStyleClass().add(secondChampion.getName().substring(0,2) + "-Ability-2");
 
         Button secondAbility3 = new Button();
         secondAbility3.setPrefSize(35,35);
-        secondAbility3.getStylesheets().add(getClass().getResource("abilities.css").toExternalForm());
+        secondAbility3.getStylesheets().add(getClass().getResource("css/abilities.css").toExternalForm());
         secondAbility3.getStyleClass().add(secondChampion.getName().substring(0,2) + "-Ability-3");
 
         secondPlayerAbilities = new HBox(-5);
@@ -414,7 +404,7 @@ public class BoardRoot extends StackPane {
 //        firstTeam.setStyle("-fx-background-color: #ADD8E6");
 
         Button moveButton = new Button();
-        moveButton.getStylesheets().add(this.getClass().getResource("ActionButtons.css").toExternalForm());
+        moveButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
         moveButton.getStyleClass().add("move");
 
         moveButton.setOnAction(e -> {
@@ -425,7 +415,7 @@ public class BoardRoot extends StackPane {
         });
 
         Button attackButton = new Button();
-        attackButton.getStylesheets().add(this.getClass().getResource("ActionButtons.css").toExternalForm());
+        attackButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
         attackButton.getStyleClass().add("attack");
 
         attackButton.setOnAction(e -> {
@@ -447,7 +437,7 @@ public class BoardRoot extends StackPane {
 
 
         Button castButton = new Button();
-        castButton.getStylesheets().add(this.getClass().getResource("ActionButtons.css").toExternalForm());
+        castButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
         castButton.getStyleClass().add("cast");
 
         castButton.setOnAction(e -> {
@@ -457,7 +447,7 @@ public class BoardRoot extends StackPane {
         });
 
         Button endTurnButton = new Button();
-        endTurnButton.getStylesheets().add(this.getClass().getResource("ActionButtons.css").toExternalForm());
+        endTurnButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
         endTurnButton.getStyleClass().add("end");
 
         endTurnButton.setOnAction(e -> {
@@ -468,7 +458,7 @@ public class BoardRoot extends StackPane {
 
 
         Button leaderAbility = new Button();
-        leaderAbility.getStylesheets().add(this.getClass().getResource("ActionButtons.css").toExternalForm());
+        leaderAbility.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
         leaderAbility.getStyleClass().add("leader");
 
         leaderAbility.setOnAction(e -> onLeaderAbility());
@@ -508,7 +498,7 @@ public class BoardRoot extends StackPane {
         for (Champion champion : game.getFirstPlayer().getTeam()) {
             Button button = new Button();
 
-            button.getStylesheets().add(this.getClass().getResource("sideIcon.css").toExternalForm());
+            button.getStylesheets().add(this.getClass().getResource("css/side-icons.css").toExternalForm());
             button.getStyleClass().add(champion.getName().substring(0, 2));
 
             button.setOnAction(e -> {
@@ -536,7 +526,7 @@ public class BoardRoot extends StackPane {
         for (Champion champion : game.getSecondPlayer().getTeam()) {
             Button button = new Button(champion.getName());
 
-            button.getStylesheets().add(this.getClass().getResource("sideIcon.css").toExternalForm());
+            button.getStylesheets().add(this.getClass().getResource("css/side-icons.css").toExternalForm());
             button.getStyleClass().add(champion.getName().substring(0, 2));
 
             button.setOnAction(e -> {

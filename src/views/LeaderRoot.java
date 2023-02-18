@@ -26,7 +26,7 @@ public class LeaderRoot extends VBox {
 
         super(v);
         this.setAlignment(Pos.BOTTOM_CENTER);
-        this.setStyle("-fx-background-image: url('views/selectionBG.png');");
+        this.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
 
         firstTeam = new HBox();
         firstTeam.setAlignment(Pos.CENTER);
@@ -42,7 +42,7 @@ public class LeaderRoot extends VBox {
         for (Champion c : game.getFirstPlayer().getTeam()) {
             Button button = new Button();
 
-            button.getStylesheets().add(this.getClass().getResource("leader.css").toExternalForm());
+            button.getStylesheets().add(this.getClass().getResource("css/leader.css").toExternalForm());
             button.getStyleClass().add(c.getName().substring(0, 2));
 
             int finalI = i;
@@ -62,7 +62,7 @@ public class LeaderRoot extends VBox {
         for (Champion c : game.getSecondPlayer().getTeam()) {
             Button button = new Button();
 
-            button.getStylesheets().add(this.getClass().getResource("leader.css").toExternalForm());
+            button.getStylesheets().add(this.getClass().getResource("css/leader.css").toExternalForm());
             button.getStyleClass().add(c.getName().substring(0, 2));
 
             int finalI = i;

@@ -25,23 +25,25 @@ public class MapSelectionRoot extends VBox {
 
         forestButton = new Button();
         forestButton.setOnAction(e -> onSwitchToBoard("forest"));
-        forestButton.setOnMouseEntered(e -> this.setStyle("-fx-background-image: url('views/avengersForest.png');"));
+        forestButton.setOnMouseEntered(e -> this.setStyle("-fx-background-image: url('views/bg_imgs/avengersForest.png');"));
         forestButton.setOnMouseExited(e -> this.setStyle("-fx-background-color: #11554A;"));
-        forestButton.getStylesheets().add(this.getClass().getResource("mapButtons.css").toExternalForm());
+        forestButton.getStylesheets().add(this.getClass().getResource("css/map-btns.css").toExternalForm());
         forestButton.getStyleClass().add("forest");
+
 
         snowButton = new Button();
         snowButton.setOnAction(e -> onSwitchToBoard("snow"));
-        snowButton.setOnMouseEntered(e -> this.setStyle("-fx-background-image: url('views/avengersSnow.jpg');"));
+        snowButton.setOnMouseEntered(e -> this.setStyle("-fx-background-image: url('views/bg_imgs/avengersSnow.jpg');"));
         snowButton.setOnMouseExited(e -> this.setStyle("-fx-background-color: #11554A;"));
-        snowButton.getStylesheets().add(this.getClass().getResource("mapButtons.css").toExternalForm());
+        snowButton.getStylesheets().add(this.getClass().getResource("css/map-btns.css").toExternalForm());
         snowButton.getStyleClass().add("snow");
+
 
         galaxyButton = new Button();
         galaxyButton.setOnAction(e -> onSwitchToBoard("galaxy"));
 //        galaxyButton.setOnMouseEntered(e -> this.setStyle("-fx-background-image: url('views/galaxyGIF2.gif');"));
 //        galaxyButton.setOnMouseExited(e -> this.setStyle("-fx-background-color: #11554A;"));
-        galaxyButton.getStylesheets().add(this.getClass().getResource("mapButtons.css").toExternalForm());
+        galaxyButton.getStylesheets().add(this.getClass().getResource("css/map-btns.css").toExternalForm());
         galaxyButton.getStyleClass().add("galaxy");
 
         mapButtons = new HBox(10);

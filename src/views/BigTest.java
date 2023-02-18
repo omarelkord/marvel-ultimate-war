@@ -1,13 +1,9 @@
 package views;
 
 import engine.Game;
-import javafx.animation.*;
 import javafx.application.Application;
-import javafx.beans.value.*;
-import javafx.event.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.BlendMode;
@@ -17,17 +13,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import model.abilities.Ability;
 import model.world.Champion;
 
 import java.io.IOException;
-
-import static views.Controller.createTopRightIconsStylesheet;
 
 // shows a progress bar whose bar changes color depending on the amount of progress.
 public class BigTest extends Application {
@@ -47,7 +38,7 @@ public class BigTest extends Application {
             ProgressBar bar = new ProgressBar();
             bar.setProgress(1);
             bar.setPrefSize(15, 15);
-            bar.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+            bar.getStylesheets().add(BigTest.class.getResource("fonts/bar-colors.css").toExternalForm());
             bar.getStyleClass().add("shiny-orange");
 
             root.getChildren().add(bar);
@@ -75,13 +66,13 @@ public class BigTest extends Application {
         StackPane stackPane = new StackPane();
 
         HBox hBox = new HBox();
-        ImageView imageView = new ImageView(new Image("views/plus_sign.png"));
+        ImageView imageView = new ImageView(new Image("views/gen_imgs/plus_sign.png"));
 
 
         ProgressBar HPbar = new ProgressBar();
         HPbar.setPrefSize(265,20);
         HPbar.setProgress(0.4);
-        HPbar.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+        HPbar.getStylesheets().add(BigTest.class.getResource("fonts/bar-colors.css").toExternalForm());
         HPbar.getStyleClass().add("shiny-blue");
 
 //        double i = 265 - (bar.getProgress() * 265);
@@ -100,7 +91,7 @@ public class BigTest extends Application {
         stackPane.getChildren().addAll(HPbar, hBox, label);
 
         Button button = new Button("Click me");
-        button.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+        button.getStylesheets().add(BigTest.class.getResource("fonts/bar-colors.css").toExternalForm());
         button.getStyleClass().add("shiny-orange");
 
         root.setAlignment(Pos.CENTER);
@@ -130,13 +121,13 @@ public class BigTest extends Application {
         StackPane stackPane = new StackPane();
 
         HBox hBox = new HBox();
-        ImageView imageView = new ImageView(new Image("views/plus_sign.png"));
+        ImageView imageView = new ImageView(new Image("views/gen_imgs/plus_sign.png"));
 
 
         ProgressBar HPbar = new ProgressBar();
         HPbar.setPrefSize(265,20);
         HPbar.setProgress(0.2);
-        HPbar.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+        HPbar.getStylesheets().add(BigTest.class.getResource("fonts/bar-colors.css").toExternalForm());
         HPbar.getStyleClass().add("shiny-green");
 
 //        double i = 265 - (bar.getProgress() * 265);
@@ -154,7 +145,7 @@ public class BigTest extends Application {
         stackPane.getChildren().addAll(HPbar, hBox, label);
 
         Button button = new Button("Click me");
-        button.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+        button.getStylesheets().add(BigTest.class.getResource("fonts/bar-colors.css").toExternalForm());
         button.getStyleClass().add("shiny-orange");
 
         root.setAlignment(Pos.CENTER);
@@ -323,7 +314,7 @@ public class BigTest extends Application {
         ProgressBar firstPlayerBar1 = new ProgressBar();
         firstPlayerBar1.setPrefSize(265,20);
         firstPlayerBar1.setProgress(0.7);
-        firstPlayerBar1.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+        firstPlayerBar1.getStylesheets().add(BigTest.class.getResource("fonts/bar-colors.css").toExternalForm());
         firstPlayerBar1.getStyleClass().add("shiny-red");
 
         StackPane firstHPStackpane = new StackPane();
@@ -331,7 +322,7 @@ public class BigTest extends Application {
         firstHPStackpane.setAlignment(Pos.CENTER_LEFT);
         firstHPStackpane.getChildren().addAll(firstPlayerBar1, firstHPLabel);
 
-        ImageView firstPlusImg = new ImageView(new Image("views/plus6.png"));
+        ImageView firstPlusImg = new ImageView(new Image("views/gen_imgs/plus_sign.png"));
 
         HBox firstHPRow = new HBox(5);
         firstHPRow.getChildren().addAll(firstPlusImg, firstHPStackpane);
@@ -347,11 +338,11 @@ public class BigTest extends Application {
         ProgressBar firstPlayerBar2 = new ProgressBar();
         firstPlayerBar2.setPrefSize(215,20);
         firstPlayerBar2.setProgress(0.8);
-        firstPlayerBar2.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+        firstPlayerBar2.getStylesheets().add(BigTest.class.getResource("fonts/bar-colors.css").toExternalForm());
         firstPlayerBar2.getStyleClass().add("shiny-blue");
 
 
-        ImageView firstManaImg = new ImageView(new Image("views/mana_sign.png"));
+        ImageView firstManaImg = new ImageView(new Image("views/gen_imgs/mana_sign.png"));
 
         StackPane firstManaStackpane = new StackPane();
 
@@ -363,14 +354,14 @@ public class BigTest extends Application {
 
         //
 
-        ImageView firstLightningImg = new ImageView(new Image("views/lightning_sign2.png"));
+        ImageView firstLightningImg = new ImageView(new Image("views/gen_imgs/lightning_sign.png"));
 
         HBox firstAPRow = new HBox(5);
         firstAPRow.getChildren().addAll(firstLightningImg, createAPBar(5));
 
 
 //        Button button = new Button("Click me");
-//        button.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+//        button.getStylesheets().add(BigTest.class.getResource("fonts/bar-colors.css").toExternalForm());
 //        button.getStyleClass().add("shiny-orange");
 //
 //        root.setAlignment(Pos.CENTER);
@@ -432,7 +423,7 @@ public class BigTest extends Application {
         ProgressBar secondPlayerBar1 = new ProgressBar();
         secondPlayerBar1.setPrefSize(265,20);
         secondPlayerBar1.setProgress(0.7);
-        secondPlayerBar1.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+        secondPlayerBar1.getStylesheets().add(BigTest.class.getResource("fonts/bar-colors.css").toExternalForm());
         secondPlayerBar1.getStyleClass().add("shiny-red");
         secondPlayerBar1.setRotate(180);
 
@@ -441,7 +432,7 @@ public class BigTest extends Application {
         secondHPStackpane.setAlignment(Pos.CENTER_RIGHT);
         secondHPStackpane.getChildren().addAll(secondPlayerBar1, secondHPLabel);
 
-        ImageView secondPlusImg = new ImageView(new Image("views/plus6.png"));
+        ImageView secondPlusImg = new ImageView(new Image("views/gen_imgs/plus_sign.png"));
 
 
         HBox secondHPRow = new HBox(5);
@@ -459,7 +450,7 @@ public class BigTest extends Application {
         ProgressBar secondPlayerBar2 = new ProgressBar();
         secondPlayerBar2.setPrefSize(215,20);
         secondPlayerBar2.setProgress(0.8);
-        secondPlayerBar2.getStylesheets().add(BigTest.class.getResource("fonts/orange-button.css").toExternalForm());
+        secondPlayerBar2.getStylesheets().add(BigTest.class.getResource("fonts/bar-colors.css").toExternalForm());
         secondPlayerBar2.getStyleClass().add("shiny-blue");
         secondPlayerBar2.setRotate(180);
 
@@ -467,7 +458,7 @@ public class BigTest extends Application {
         secondManaStackpane.setAlignment(Pos.CENTER_RIGHT);
         secondManaStackpane.getChildren().addAll(secondPlayerBar2, secondManaLabel);
 
-        ImageView secondManaImg = new ImageView(new Image("views/mana_sign.png"));
+        ImageView secondManaImg = new ImageView(new Image("views/gen_imgs/mana_sign.png"));
 
         HBox secondManaRow = new HBox(5);
         secondManaRow.setAlignment(Pos.CENTER_RIGHT);
@@ -475,7 +466,7 @@ public class BigTest extends Application {
 
         //
 
-        ImageView secondLightningImg = new ImageView(new Image("views/lightning_sign2.png"));
+        ImageView secondLightningImg = new ImageView(new Image("views/gen_imgs/lightning_sign.png"));
 
 
         HBox secondAPRow = new HBox(5);
@@ -546,7 +537,7 @@ public class BigTest extends Application {
         colorAdjust.setSaturation(1);
 //        colorAdjust.setHue(-0.8);
 
-        ImageView bgImg = new ImageView("views/snowMap.png");
+        ImageView bgImg = new ImageView("views/bg_imgs/snowMap.png");
         ImageView healGif = new ImageView("views/gifs/healTrial3.gif");
         healGif.setEffect(colorAdjust);
         healGif.setBlendMode(BlendMode.SCREEN);

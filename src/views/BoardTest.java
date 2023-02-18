@@ -38,7 +38,7 @@ public class BoardTest extends Application {
 
         Scene scene = new Scene(boardRoot);
 
-        stage.getIcons().add(new Image("views/taskBarIcon.jpg"));
+        stage.getIcons().add(new Image("views/gen_imgs/taskBarIcon.jpg"));
         stage.setTitle("Marvel - Ultimate War!");
         stage.setScene(scene);
         stage.show();

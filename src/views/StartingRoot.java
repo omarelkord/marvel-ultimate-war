@@ -30,7 +30,7 @@ public class StartingRoot extends VBox {
 
     public StartingRoot(double v) {
         super(v);
-        this.setStyle("-fx-background-image: url('views/superwar5.jpg');");
+        this.setStyle("-fx-background-image: url('views/bg_imgs/startingBG.jpg');");
         this.setAlignment(Pos.CENTER);
 
         text1 = new TextField();
@@ -43,13 +43,13 @@ public class StartingRoot extends VBox {
 
         Label label1 = new Label("PLAYER 1:");
 //label1.setFont(new Font("Consolas", 20));
-        label1.getStylesheets().add(this.getClass().getResource("label.css").toExternalForm());
+        label1.getStylesheets().add(this.getClass().getResource("css/starting-label.css").toExternalForm());
         label1.getStyleClass().add("outline");
 //label1.setTextFill(Color.web("white"));
 
         Label label2 = new Label("PLAYER 2:");
 //label2.setFont(new Font("Consolas", 20));
-        label2.getStylesheets().add(this.getClass().getResource("label.css").toExternalForm());
+        label2.getStylesheets().add(this.getClass().getResource("css/starting-label.css").toExternalForm());
         label2.getStyleClass().add("outline");
 //label2.setTextFill(Color.web("white"));
 
@@ -68,10 +68,9 @@ public class StartingRoot extends VBox {
         hbox2.setAlignment(Pos.CENTER);
 
         playButton = new Button();
-        playButton.getStylesheets().add(this.getClass().getResource("trial.css").toExternalForm());
-        playButton.getStyleClass().add("button1");
+        playButton.setStyle("-fx-graphic: url('views/btn_imgs/startButton.png'); " +
+                            "-fx-background-color: transparent;");
 
-//        playButton.setPrefSize(50, 30);
 
         this.getChildren().add(playButton);
     }
