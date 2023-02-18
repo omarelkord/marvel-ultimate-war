@@ -1,0 +1,42 @@
+@font-face {
+src: url("fonts/SpaceMission-rgyw9.otf");
+}
+
+@font-face {
+src: url("fonts/BruceForeverRegular-X3jd2.ttf");
+}
+
+@font-face {
+src: url("fonts/Warungasem-rgO1O.ttf");
+}
+
+@font-face {
+src: url("fonts/VerminVibesV-Zlg3.ttf");
+}
+
+.red{
+    -fx-text-fill:
+    linear-gradient(#E44E4F 20%, #AF1B1B 100%),
+    linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 1), 15, .7, 0.0, 0.0);
+    -fx-font-family: 'Vermin Vibes V';
+    -fx-font-size: 10px;
+ }
+
+
+.blue {
+-fx-font-family: 'Vermin Vibes V';
+-fx-font-size: 10px;
+-fx-text-fill: linear-gradient(#6cb0e4 20%, #2e65ac 100%);
+
+-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 1), 15, .7, 0.0, 0.0);
+}
+
+.green {
+-fx-font-family: 'Vermin Vibes V';
+-fx-font-size: 10px;
+-fx-text-fill: linear-gradient(#46b9ad 20%, #25AB6C 100%);
+
+-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 1), 15, .7, 0.0, 0.0);
+}

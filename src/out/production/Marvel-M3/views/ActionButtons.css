@@ -1,0 +1,77 @@
+.attack{
+    -fx-background-color: transparent;
+    -fx-graphic: url('attackButton.png');
+}
+
+.attack:hover{
+    -fx-background-color: transparent;
+    -fx-graphic: url('attackButtonGlow.png');
+}
+
+.attack:pressed{
+    -fx-background-color: transparent;
+    -fx-graphic: url('attackButton.png');
+}
+
+
+.move{
+    -fx-background-color: transparent;
+    -fx-graphic: url('moveButton.png');
+}
+
+.move:hover{
+    -fx-background-color: transparent;
+    -fx-graphic: url('moveButtonGlow.png');
+}
+
+.move:pressed{
+    -fx-background-color: transparent;
+    -fx-graphic: url('moveButton.png');
+}
+
+
+.cast{
+    -fx-background-color: transparent;
+    -fx-graphic: url('castButton.png');
+}
+
+.cast:hover{
+    -fx-background-color: transparent;
+    -fx-graphic: url('castButtonGlow.png');
+}
+
+.cast:pressed{
+    -fx-background-color: transparent;
+    -fx-graphic: url('castButton.png');
+}
+
+
+.end{
+    -fx-background-color: transparent;
+    -fx-graphic: url('endTurnButton.png');
+}
+
+.end:hover{
+    -fx-background-color: transparent;
+    -fx-graphic: url('endTurnButtonGlow.png');
+}
+
+.end:pressed{
+    -fx-background-color: transparent;
+    -fx-graphic: url('endTurnButton.png');
+}
+
+.leader{
+    -fx-background-color: transparent;
+    -fx-graphic: url('leaderButton.png');
+}
+
+.leader:hover{
+    -fx-background-color: transparent;
+    -fx-graphic: url('leaderButtonGlow.png');
+}
+
+.leader:pressed{
+    -fx-background-color: transparent;
+    -fx-graphic: url('leaderButton.png');
+}

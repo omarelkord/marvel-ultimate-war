@@ -1,0 +1,47 @@
+.forest{
+    -fx-background-color: transparent;
+    -fx-graphic: url('forestButton.png');
+}
+
+.forest:hover{
+    -fx-background-color: transparent;
+    -fx-graphic: url('forestButtonGlow.png');
+}
+
+.forest:pressed{
+    -fx-background-color: transparent;
+    -fx-graphic: url('forestButton.png');
+}
+
+
+.snow{
+    -fx-background-color: transparent;
+    -fx-graphic: url('snowButton.png');
+}
+
+.snow:hover{
+    -fx-background-color: transparent;
+    -fx-graphic: url('snowButtonGlow.png');
+}
+
+.snow:pressed{
+    -fx-background-color: transparent;
+    -fx-graphic: url('snowButton.png');
+}
+
+
+.galaxy{
+    -fx-background-color: transparent;
+    -fx-graphic: url('galaxyButton.png');
+}
+
+.galaxy:hover{
+    -fx-background-color: transparent;
+    -fx-graphic: url('galaxyButtonGlow.png');
+}
+
+.galaxy:pressed{
+    -fx-background-color: transparent;
+    -fx-graphic: url('galaxyButton.png');
+}
+
