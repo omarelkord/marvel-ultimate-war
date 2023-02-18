@@ -21,6 +21,7 @@ public class AnimationTest extends Application {
         Image image = new Image("views/captainAmericaIcon.png");
         ImageView imageView = new ImageView(image);
 
+
         Button button = new Button("TEST");
 
         TranslateTransition translateTransition = new TranslateTransition();
