@@ -69,7 +69,7 @@ public class BoardRoot extends StackPane {
 
     BorderPane borderPane;
     ImageView blackImg;
-    HBox popUpStats;
+    VBox popUpStats;
 
 
     ColorAdjust darknessEffect;
@@ -157,7 +157,7 @@ public class BoardRoot extends StackPane {
         firstHPLabel = new Label(firstChampion.getCurrentHP() + "/" + firstChampion.getMaxHP());
 
         firstHPLabel.getStylesheets().add(BigTest.class.getResource("css/game-font.css").toExternalForm());
-        firstHPLabel.getStyleClass().add("red");
+        firstHPLabel.getStyleClass().add("green");
         firstHPLabel.setPadding(new Insets(0,0,2,10));
 
 
@@ -260,11 +260,14 @@ public class BoardRoot extends StackPane {
         Collections.addAll(firstAbilityButtons, firstAbility1, firstAbility2, firstAbility3);
 
 
+
+
+
         //SECOND PLAYER BARS
         secondHPLabel = new Label(secondChampion.getCurrentHP() + "/" + secondChampion.getMaxHP());
 
         secondHPLabel.getStylesheets().add(BigTest.class.getResource("css/game-font.css").toExternalForm());
-        secondHPLabel.getStyleClass().add("red");
+        secondHPLabel.getStyleClass().add("green");
         secondHPLabel.setPadding(new Insets(0,10,0,0));
 
 

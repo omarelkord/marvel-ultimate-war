@@ -12,6 +12,7 @@ import javafx.scene.text.Font;
 public class GameOverRoot extends VBox {
 
     Player player;
+
     public GameOverRoot(Player player){
         this.player = player;
         this.setStyle("-fx-background-image: url('views/bg_imgs/gradient.jpg');");

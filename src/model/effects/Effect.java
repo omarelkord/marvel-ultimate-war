@@ -30,6 +30,10 @@ public Object clone() throws CloneNotSupportedException
 	public EffectType getType() {
 		return type;
 	}
+
+	public String toString(){
+		return this.name + "(" + this.duration + ")";
+	}
 public abstract void apply(Champion c);
 
 public abstract void remove(Champion c);

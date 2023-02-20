@@ -1135,12 +1135,32 @@ public class Controller {
             double progress = (double) c.getCurrentHP()/c.getMaxHP();
             mainFrame.boardRoot.firstPlayerBar1.getStyleClass().clear();
 
+            Label firstHPLabel = mainFrame.boardRoot.firstHPLabel;
+
+            firstHPLabel.getStyleClass().clear();
+            firstHPLabel.getStylesheets().clear();
+            
             if (progress < 0.2) {
                 setBarStyleClass(mainFrame.boardRoot.firstPlayerBar1, RED_BAR);
+
+
+
+                firstHPLabel.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/game-font.css").toExternalForm());
+                firstHPLabel.getStyleClass().add("red");
+
+
             } else if (progress < 0.4) {
                 setBarStyleClass(mainFrame.boardRoot.firstPlayerBar1, ORANGE_BAR);
+
+                firstHPLabel.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/game-font.css").toExternalForm());
+                firstHPLabel.getStyleClass().add("orange");
+
             } else {
                 setBarStyleClass(mainFrame.boardRoot.firstPlayerBar1, GREEN_BAR);
+
+                firstHPLabel.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/game-font.css").toExternalForm());
+                firstHPLabel.getStyleClass().add("green");
+
             }
 
             mainFrame.boardRoot.firstPlayerIcon.getStyleClass().clear();
@@ -1183,7 +1203,7 @@ public class Controller {
 
     }
 
-    public static HBox getStatsPopUp(Champion c){
+    public static VBox getStatsPopUp(Champion c){
         //HP
         MyProgressBar hpBar = new MyProgressBar("HP" , c.getCurrentHP(),c.getMaxHP());
 
@@ -1230,13 +1250,25 @@ public class Controller {
 
         });
 
-        HBox root = new HBox(50);
+        HBox imgAndBarsHBox = new HBox(50);
+
+        Rectangle champ = new Rectangle(100,100);
+        imgAndBarsHBox.getChildren().addAll(champ,bars1,bars2, closeBtn);
+
+        HBox appliedEffectsHbox = new HBox();
+
+        for(Effect e : c.getAppliedEffects()){
+
+            Button button = new Button(e.toString());
+            appliedEffectsHbox.getChildren().add(button);
+        }
+
+        VBox root = new VBox();
         root.setMaxSize(800,250);
         root.setBackground(new Background(new BackgroundFill(Color.FIREBRICK, CornerRadii.EMPTY, Insets.EMPTY)));
         root.setAlignment(Pos.CENTER);
+        root.getChildren().addAll(imgAndBarsHBox, appliedEffectsHbox);
 
-        Rectangle champ = new Rectangle(100,100);
-        root.getChildren().addAll(champ,bars1,bars2, closeBtn);
 
         return root;
     }
