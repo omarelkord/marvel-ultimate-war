@@ -84,8 +84,15 @@ src: url("../fonts/VerminVibesV-Zlg3.ttf");
 }
 
 .leader-font {
--fx-font-family: 'Vermin Vibes V';
+-fx-font-family: 'Bruce Forever Regular';
 -fx-font-size: 30px;
--fx-text-fill: linear-gradient( #E8E2E2 20%, #646464 100%);
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #010100 100%);
+
+}
+
+.select-leader-font {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 14px;
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #010100 100%);
 
 }

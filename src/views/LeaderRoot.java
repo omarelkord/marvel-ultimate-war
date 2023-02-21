@@ -79,19 +79,23 @@ public class LeaderRoot extends VBox {
         }
 
         Label VS = new Label("SELECT YOUR LEADERS");
-        VS.setStyle("-fx-font: normal bold 30 Langdon;" + "-fx-text-fill: orange;");
+        VS.getStylesheets().add(BigTest.class.getResource("game-font.css").toExternalForm());
+        VS.getStyleClass().add("leader-font");
 
 
 
         Label firstPlayerSelect = new Label(mainFrame.game.getFirstPlayer().getName() + ", select your leader!");
-        firstPlayerSelect.setStyle("-fx-font: normal bold 14 Langdon;" + "-fx-text-fill: orange;");
+        firstPlayerSelect.getStylesheets().add(BigTest.class.getResource("game-font.css").toExternalForm());
+        firstPlayerSelect.getStyleClass().add("select-leader-font");
+
 
         this.getChildren().add(firstPlayerSelect);
         this.getChildren().add(firstTeam);
         this.getChildren().add(VS);
 
         Label secondPlayerSelect = new Label(mainFrame.game.getSecondPlayer().getName() + ", select your leader!");
-        secondPlayerSelect.setStyle("-fx-font: normal bold 14 Langdon;" + "-fx-text-fill: orange;");
+        secondPlayerSelect.getStylesheets().add(BigTest.class.getResource("game-font.css").toExternalForm());
+        secondPlayerSelect.getStyleClass().add("select-leader-font");
 
 
         this.getChildren().add(secondPlayerSelect);

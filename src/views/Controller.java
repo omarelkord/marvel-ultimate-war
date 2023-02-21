@@ -1248,9 +1248,43 @@ public class Controller {
         HBox closeBtnHbox = new HBox();
         closeBtnHbox.getChildren().add(closeBtn);
         closeBtnHbox.setAlignment(Pos.TOP_RIGHT);
+        HBox bars = new HBox(15);
+        bars.getChildren().addAll(bars1,bars2);
 
-        root.getChildren().addAll(champHbox,bars1,bars2, closeBtnHbox);
+        VBox effects_bars = new VBox(30);
+        effects_bars.setAlignment(Pos.CENTER);
 
+
+        HBox effectsHbox = new HBox(15);
+
+        effects_bars.getChildren().addAll(bars, effectsHbox);
+
+
+        if(!c.getAppliedEffects().isEmpty()){
+            Label title = new Label("EFFECTS: ");
+            title.getStylesheets().add(Controller.class.getResource("game-font.css").toExternalForm());
+            title.getStyleClass().add("effects-font");
+
+            effectsHbox.getChildren().clear();
+            effectsHbox.getChildren().add(title);
+
+        }
+        else
+            effectsHbox.getChildren().clear();
+
+        for (Effect e: c.getAppliedEffects()) {
+            Label effect = new Label(e.getName() + " (" + e.getDuration() + ")" );
+            effect.getStylesheets().add(Controller.class.getResource("game-font.css").toExternalForm());
+            effect.getStyleClass().add("effects-font");
+
+            effectsHbox.getChildren().add(effect);
+
+        }
+
+
+
+
+        root.getChildren().addAll(champHbox,effects_bars, closeBtnHbox);
 
         closeBtn.setOnAction(e -> {
 
