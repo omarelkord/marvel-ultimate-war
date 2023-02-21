@@ -79,13 +79,13 @@ public class LeaderRoot extends VBox {
         }
 
         Label VS = new Label("SELECT YOUR LEADERS");
-        VS.getStylesheets().add(BigTest.class.getResource("game-font.css").toExternalForm());
+        VS.getStylesheets().add(getClass().getResource("css/game-font.css").toExternalForm());
         VS.getStyleClass().add("leader-font");
 
 
 
         Label firstPlayerSelect = new Label(mainFrame.game.getFirstPlayer().getName() + ", select your leader!");
-        firstPlayerSelect.getStylesheets().add(BigTest.class.getResource("game-font.css").toExternalForm());
+        firstPlayerSelect.getStylesheets().add(getClass().getResource("css/game-font.css").toExternalForm());
         firstPlayerSelect.getStyleClass().add("select-leader-font");
 
 
@@ -94,7 +94,7 @@ public class LeaderRoot extends VBox {
         this.getChildren().add(VS);
 
         Label secondPlayerSelect = new Label(mainFrame.game.getSecondPlayer().getName() + ", select your leader!");
-        secondPlayerSelect.getStylesheets().add(BigTest.class.getResource("game-font.css").toExternalForm());
+        secondPlayerSelect.getStylesheets().add(getClass().getResource("css/game-font.css").toExternalForm());
         secondPlayerSelect.getStyleClass().add("select-leader-font");
 
 
