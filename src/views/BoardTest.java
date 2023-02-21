@@ -22,6 +22,7 @@ public class BoardTest extends Application {
         ArrayList<Champion> champions = Game.getAvailableChampions();
 
         Player firstPlayer = new Player("Omar");
+
         Player secondPlayer = new Player("Sara");
 
         Collections.addAll(firstPlayer.getTeam(), champions.get(0), champions.get(2), champions.get(3));

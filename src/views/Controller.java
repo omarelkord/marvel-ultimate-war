@@ -1203,7 +1203,80 @@ public class Controller {
 
     }
 
-    public static VBox getStatsPopUp(Champion c){
+    public static HBox getStatsPopUp(Champion c){
+
+        MyProgressBar hpBar = new MyProgressBar("HP" , c.getCurrentHP(),c.getMaxHP());
+
+        //SPEED
+        MyProgressBar speedBar = new MyProgressBar("SPEED" , c.getSpeed(),c.getMaxSpeed());
+
+        //RANGE
+        MyProgressBar rangeBar = new MyProgressBar("RANGE" , c.getAttackRange(),c.getMaxAttackRange());
+
+        //DAMAGE
+        MyProgressBar damageBar = new MyProgressBar("DAMAGE" , c.getAttackDamage(),c.getMaxAttackDamage());
+
+        VBox bars1 = new VBox(40);
+        bars1.setAlignment(Pos.CENTER);
+
+        VBox bars2 = new VBox(40);
+        bars2.setAlignment(Pos.CENTER);
+
+        bars1.getChildren().addAll(hpBar,damageBar);
+        bars2.getChildren().addAll(speedBar,rangeBar);
+
+        Button closeBtn = new Button();
+        closeBtn.setPrefSize(50,50);
+        closeBtn.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/popup.css").toExternalForm());
+        closeBtn.getStyleClass().add("closeBtn");
+
+        HBox root = new HBox(50);
+        root.setMaxSize(1080,250);
+
+        root.setStyle("-fx-background-image: url('views/popup_imgs/selectionBgresized.png');");
+
+        Button champ = new Button();
+        champ.setPrefSize(100,100);
+        champ.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/popup.css").toExternalForm());
+        champ.getStyleClass().add(c.getName().substring(0,2));
+        champ.setPadding(new Insets(1,0,0,0));
+
+        HBox champHbox = new HBox();
+        champHbox.setAlignment(Pos.BOTTOM_LEFT);
+        champHbox.getChildren().add(champ);
+
+        HBox closeBtnHbox = new HBox();
+        closeBtnHbox.getChildren().add(closeBtn);
+        closeBtnHbox.setAlignment(Pos.TOP_RIGHT);
+
+        root.getChildren().addAll(champHbox,bars1,bars2, closeBtnHbox);
+
+
+        closeBtn.setOnAction(e -> {
+
+            FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), mainFrame.boardRoot.blackImg);
+            FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(500), mainFrame.boardRoot.popUpStats);
+
+            fadeTransition1.setFromValue(1);
+            fadeTransition1.setToValue(0);
+            fadeTransition1.play();
+
+            fadeTransition2.setFromValue(1);
+            fadeTransition2.setToValue(0);
+            fadeTransition2.play();
+
+            fadeTransition1.setOnFinished(f -> {
+                mainFrame.boardRoot.getChildren().clear();
+                mainFrame.boardRoot.getChildren().add(mainFrame.boardRoot.borderPane);
+            });
+
+
+        });
+
+        return root;
+    }
+
+    public static VBox getStatsPopUp2(Champion c){
         //HP
         MyProgressBar hpBar = new MyProgressBar("HP" , c.getCurrentHP(),c.getMaxHP());
 

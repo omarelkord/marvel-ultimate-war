@@ -69,7 +69,7 @@ public class BoardRoot extends StackPane {
 
     BorderPane borderPane;
     ImageView blackImg;
-    VBox popUpStats;
+    HBox popUpStats;
 
 
     ColorAdjust darknessEffect;
