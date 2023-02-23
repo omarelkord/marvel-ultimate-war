@@ -25,6 +25,9 @@ public class BoardTest extends Application {
 
         Player secondPlayer = new Player("Sara");
 
+        firstPlayer.setLeader(champions.get(0));
+        secondPlayer.setLeader(champions.get(6));
+
         Collections.addAll(firstPlayer.getTeam(), champions.get(0), champions.get(2), champions.get(3));
         Collections.addAll(secondPlayer.getTeam(), champions.get(6), champions.get(8), champions.get(12));
 
@@ -35,7 +38,8 @@ public class BoardTest extends Application {
         Controller.mainFrame = new MainFrame();
         Controller.mainFrame.boardRoot = boardRoot;
         Controller.mainFrame.game = game;
-        Controller.startGrid();
+//        Controller.startGrid();
+        Controller.update();
 
         Scene scene = new Scene(boardRoot);
 

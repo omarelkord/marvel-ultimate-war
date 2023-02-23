@@ -705,6 +705,45 @@ public class Game {
 		cleanup(targets);
 	}
 
+	public ArrayList<Damageable> getTargetsOfLeader(){
+		ArrayList<Damageable> targets = new ArrayList<>();
+
+		boolean unallowed = (getCurrentChampion() != firstPlayer.getLeader() && getCurrentChampion() != secondPlayer.getLeader())
+				|| (getCurrentChampion() == firstPlayer.getLeader() && firstLeaderAbilityUsed)
+				|| (getCurrentChampion() == secondPlayer.getLeader() && secondLeaderAbilityUsed);
+
+		if (unallowed)
+			return targets;
+
+
+		if (getCurrentChampion() instanceof Hero) {
+			ArrayList<Champion> team = getCurrentChampion() == firstPlayer.getLeader() ? firstPlayer.getTeam()
+					: secondPlayer.getTeam();
+			targets.add(getCurrentChampion());
+			targets.addAll(team);
+
+		} else if (getCurrentChampion() instanceof AntiHero) {
+			for (Champion c : firstPlayer.getTeam()) {
+				if (c != firstPlayer.getLeader())
+					targets.add(c);
+			}
+			for (Champion c : secondPlayer.getTeam()) {
+				if (c != secondPlayer.getLeader())
+					targets.add(c);
+			}
+		} else if (getCurrentChampion() instanceof Villain) {
+			ArrayList<Champion> enemies = getCurrentChampion() == firstPlayer.getLeader() ? secondPlayer.getTeam()
+					: firstPlayer.getTeam();
+			for (Champion c : enemies) {
+				if (c.getCurrentHP() < (0.3 * c.getMaxHP()))
+					targets.add(c);
+			}
+		}
+
+		return targets;
+	}
+
+
 	public void useLeaderAbility() throws LeaderNotCurrentException, LeaderAbilityAlreadyUsedException {
 		if (getCurrentChampion() != firstPlayer.getLeader() && getCurrentChampion() != secondPlayer.getLeader())
 			throw new LeaderNotCurrentException("The current champion is not a leader");
@@ -712,13 +751,15 @@ public class Game {
 			throw new LeaderAbilityAlreadyUsedException("This leader already used his ability");
 		if (getCurrentChampion() == secondPlayer.getLeader() && secondLeaderAbilityUsed)
 			throw new LeaderAbilityAlreadyUsedException("This leader already used his ability");
+
+
 		ArrayList<Champion> targets = new ArrayList<Champion>();
 		if (getCurrentChampion() instanceof Hero) {
 			ArrayList<Champion> team = getCurrentChampion() == firstPlayer.getLeader() ? firstPlayer.getTeam()
 					: secondPlayer.getTeam();
 			targets.add(getCurrentChampion());
-			for (Champion c : team)
-				targets.add(c);
+			targets.addAll(team);
+
 		} else if (getCurrentChampion() instanceof AntiHero) {
 			for (Champion c : firstPlayer.getTeam()) {
 				if (c != firstPlayer.getLeader())

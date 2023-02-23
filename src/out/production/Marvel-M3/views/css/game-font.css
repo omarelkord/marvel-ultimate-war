@@ -121,3 +121,9 @@ src: url("../fonts/VerminVibesV-Zlg3.ttf");
 
 }
 
+.effects-font {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 13px;
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #646464 100%);
+
+}

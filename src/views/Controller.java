@@ -10,8 +10,6 @@ import exceptions.*;
 import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.animation.SequentialTransition;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -27,9 +25,7 @@ import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
 import javafx.util.Duration;
 import model.abilities.*;
 import model.effects.Effect;
@@ -40,7 +36,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.concurrent.atomic.AtomicReference;
 
 import static engine.Game.getAvailableChampions;
 
@@ -185,9 +181,8 @@ public class Controller {
         mainFrame.boardRoot = new BoardRoot(mainFrame.game, mapChosen);
 
         fadeOut(mainFrame.mapSelectionRoot, mainFrame.boardRoot);
-        startGrid();
-        updateHP();
-        updateTurnOrder();
+
+        update();
     }
 
 
@@ -343,8 +338,72 @@ public class Controller {
     }
 
 
+    public static void addGifsLeader(Champion c, ArrayList<Damageable> targets){
 
-    public static void addGifs(Ability a, ArrayList<Damageable> targets){
+        String gifType = "";
+
+        //attack
+        if (c instanceof Hero)
+            gifType = "buff";
+
+        else if (c instanceof Villain)
+            gifType = "dmg";
+
+        else if (c instanceof AntiHero)
+            gifType = "debuff";
+
+
+        Object[][] b = mainFrame.game.getBoard();
+
+        GridPane gridPane = new GridPane();
+
+        for (int i = 0; i < 5; i++) {
+            for (int j = 0; j < 5; j++) {
+
+
+                ImageView healGif = new ImageView("views/gifs/" + gifType + "-gif.gif");
+//                healGif.setEffect(colorAdjust);
+
+                HBox hbox = new HBox();
+                hbox.setPrefSize(500, 500);
+                hbox.setAlignment(Pos.BOTTOM_CENTER);
+                hbox.setBlendMode(BlendMode.SCREEN);
+
+
+                gridPane.add(hbox, j, 4 - i);
+
+                if (targets.contains(b[i][j])) {
+
+                    hbox.getChildren().add(healGif);
+
+                    FadeTransition fadeTransition = new FadeTransition(
+                            Duration.millis(3000),
+                            hbox);
+
+                    fadeTransition.setToValue(0);
+                    fadeTransition.play();
+
+
+                    fadeTransition.setOnFinished(e -> {
+                        mainFrame.boardRoot.center.getChildren().remove(gridPane);
+                        mainFrame.boardRoot.borderPane.setCenter(mainFrame.boardRoot.center);
+
+//                        update();
+
+                    });
+
+
+                }
+            }
+        }
+
+        mainFrame.boardRoot.center.getChildren().add(gridPane);
+        mainFrame.boardRoot.borderPane.setCenter(mainFrame.boardRoot.center);
+    }
+
+
+
+    public static void addGifs(Ability a, ArrayList<Damageable> targets, Object[][] b){
 
         String gifType;
 
@@ -362,8 +421,6 @@ public class Controller {
         else
             gifType = "debuff";
 
-
-        Object[][] b = mainFrame.game.getBoard();
 
         GridPane gridPane = new GridPane();
 
@@ -882,12 +939,16 @@ public class Controller {
 
     public static void onAttackButton(KeyCode code) {
         Direction dir = codeToDirection(code);
+        Object[][] board = clone(mainFrame.game.getBoard());
+        ArrayList<Damageable> targets = mainFrame.game.getTargetOfAttack(dir);
+
         try {
             mainFrame.game.attack(dir);
             update();
-            addGifs(null, mainFrame.game.getTargetOfAttack(dir));
-
             gameOver();
+
+            addGifs(null, targets, board);
+
 
         } catch (ChampionDisarmedException disarm) {
             exceptionMessage("Champion Disarmed!", disarm.getMessage());
@@ -897,26 +958,46 @@ public class Controller {
 
     }
 
+    public static Object[][] clone(Object[][] b){
+
+        Object[][] res = new Object[b.length][b[0].length];
+
+        for(int i=0;i<b.length;i++)
+            for(int j=0;j<b[i].length;j++)
+                res[i][j] = b[i][j];
+
+        return res;
+    }
+
     public static void onCastAbility(String abilityName) {
 
         Ability ability = findAbility(abilityName);
         AreaOfEffect castArea = ability.getCastArea();
 
+        Object[][] board = clone(mainFrame.game.getBoard());
+        AtomicReference<ArrayList<Damageable>> targets = new AtomicReference<>(new ArrayList<>());
+
         try {
             if (castArea == AreaOfEffect.TEAMTARGET || castArea == AreaOfEffect.SELFTARGET || castArea == AreaOfEffect.SURROUND) {
+
+                targets.set(mainFrame.game.getTargetsOfCast(ability));
+
                 mainFrame.game.castAbility(ability);
                 update();
-                addGifs(ability, mainFrame.game.getTargetsOfCast(ability));
+
+                addGifs(ability, targets.get(), board);
 
             } else if (castArea == AreaOfEffect.DIRECTIONAL) {
                 mainFrame.boardRoot.setOnKeyPressed(f -> {
 
                     Direction dir = codeToDirection(f.getCode());
 
+                    targets.set(mainFrame.game.getTargetsOfCastDir(ability, dir));
+
                     castAbilityDirectional(ability, dir);
                     update();
 
-                    addGifs(ability, mainFrame.game.getTargetsOfCastDir(ability, dir));
+                    addGifs(ability,targets.get(), board);
                     gameOver();
                 });
             } else {
@@ -939,9 +1020,12 @@ public class Controller {
 
     public static void castAbilityDirectional(Ability ability, Direction dir) {
         try {
-            System.out.println("entered directional");
+
+            Object[][] board = clone(mainFrame.game.getBoard());
+            ArrayList<Damageable> targets = mainFrame.game.getTargetsOfCastDir(ability, dir);
+
             mainFrame.game.castAbility(ability, dir);
-            addGifs(ability, mainFrame.game.getTargetsOfCastDir(ability, dir));
+            addGifs(ability,targets , board);
 
         } catch (AbilityUseException abilityUseException) {
             exceptionMessage("Ability Use Exception", abilityUseException.getMessage());
@@ -955,6 +1039,9 @@ public class Controller {
     public static void onSingleTarget(Ability ability) throws InvalidTargetException, NotEnoughResourcesException, AbilityUseException, CloneNotSupportedException {
         DamageableBtn[][] buttonBoard = mainFrame.boardRoot.buttonBoard;
 
+        Object[][] board = clone(mainFrame.game.getBoard());
+        ArrayList<Damageable> targets = new ArrayList<>();
+
         for (int i = 0; i < buttonBoard.length; i++)
             for (int j = 0; j < buttonBoard[i].length; j++) {
                 DamageableBtn damageableBtn = buttonBoard[i][j];
@@ -965,15 +1052,15 @@ public class Controller {
                 // INTELLIJ MADE ME DO IT :-(
                 damageableBtn.button.setOnAction(e -> {
                     try {
-                        mainFrame.game.castAbility(ability, finalI, finalJ);
-//                        addGifs(mainFrame.game.getTargetsOfCastSin(ability, finalI, finalJ));
-                        ArrayList<Damageable> targets = new ArrayList<Damageable>();
                         targets.add((Damageable) mainFrame.game.getBoard()[finalI][finalJ]);
 
-                        update();
+                        mainFrame.game.castAbility(ability, finalI, finalJ);
+//                        addGifs(mainFrame.game.getTargetsOfCastSin(ability, finalI, finalJ));
 
-                        addGifs(ability, targets);
+                        update();
                         gameOver();
+
+                        addGifs(ability, targets, board);
 
                         damageableBtn.button.setOnAction(null);
                     } catch (Exception ex) {
@@ -1001,6 +1088,7 @@ public class Controller {
         updateAbilities();
         updateSideIcons();
         disableInactiveBars();
+        updateLeaderTooltip();
     }
 
     public static void onEndTurn() {
@@ -1132,9 +1220,18 @@ public class Controller {
 
     public static void onLeaderAbility() {
         try {
+            ArrayList<Damageable> targets = mainFrame.game.getTargetsOfLeader();
+            Champion c = mainFrame.game.getCurrentChampion();
+
             mainFrame.game.useLeaderAbility();
+
             update();
             gameOver();
+
+            addGifsLeader(c, targets);
+
+
+
         } catch (Exception e) {
             exceptionMessage("Invalid action", e.getMessage());
         }
@@ -1361,7 +1458,7 @@ public class Controller {
 
         if(!c.getAppliedEffects().isEmpty()){
             Label title = new Label("EFFECTS: ");
-            title.getStylesheets().add(Controller.class.getResource("game-font.css").toExternalForm());
+            title.getStylesheets().add(Controller.class.getResource("css/game-font.css").toExternalForm());
             title.getStyleClass().add("effects-font");
 
             effectsHbox.getChildren().clear();
@@ -1373,15 +1470,11 @@ public class Controller {
 
         for (Effect e: c.getAppliedEffects()) {
             Label effect = new Label(e.getName() + " (" + e.getDuration() + ")" );
-            effect.getStylesheets().add(Controller.class.getResource("game-font.css").toExternalForm());
+            effect.getStylesheets().add(Controller.class.getResource("css/game-font.css").toExternalForm());
             effect.getStyleClass().add("effects-font");
 
             effectsHbox.getChildren().add(effect);
-
         }
-
-
-
 
         root.getChildren().addAll(champHbox,effects_bars, closeBtnHbox);
 
@@ -1683,6 +1776,34 @@ public class Controller {
             if(s.champion.getCurrentHP()==0)
                 s.addRedCross();
 
+
+    }
+
+    public static void updateLeaderTooltip(){
+
+        Tooltip t = new Tooltip();
+
+        String text;
+
+        if (mainFrame.game.getCurrentChampion() == mainFrame.game.getFirstPlayer().getLeader()) {
+            if (mainFrame.game.isFirstLeaderAbilityUsed())
+                text = "Leader Ability used";
+            else
+                text = "Leader Ability not used";
+
+        } else if (mainFrame.game.getCurrentChampion() == mainFrame.game.getSecondPlayer().getLeader()) {
+            if (mainFrame.game.isSecondLeaderAbilityUsed())
+                text = "Leader Ability used";
+            else
+                text = "Leader Ability not used";
+
+        } else
+            text = "Current champion is not a leader";
+
+
+        t.setText(text);
+//        t.setStyle("-fx-font: normal bold 11 Langdon;" + "-fx-base: #AE3522;" + "-fx-text-fill: orange;");
+        mainFrame.boardRoot.leaderAbility.setTooltip(t);
 
     }
 

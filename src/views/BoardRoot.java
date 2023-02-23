@@ -81,6 +81,8 @@ public class BoardRoot extends StackPane {
     HBox firstAPRow, secondAPRow;
     HBox firstPlayerAbilities, secondPlayerAbilities;
 
+    Button leaderAbility;
+
     public BoardRoot(Game game, String mapChosen) {
         super();
 
@@ -462,30 +464,21 @@ public class BoardRoot extends StackPane {
         });
 
 
-        Button leaderAbility = new Button();
+        leaderAbility = new Button();
         leaderAbility.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
         leaderAbility.getStyleClass().add("leader");
 
         leaderAbility.setOnAction(e -> onLeaderAbility());
 
-        Tooltip t = new Tooltip();
+        leaderAbility.setOnMouseEntered(e -> {
+            addRings(game.getTargetsOfLeader());
+        });
 
-        String text;
-        if (game.getCurrentChampion() == game.getFirstPlayer().getLeader()) {
-            if (game.isFirstLeaderAbilityUsed())
-                text = "Leader Ability used";
-            else
-                text = "Leader Ability not used";
-        } else if (game.getCurrentChampion() == game.getSecondPlayer().getLeader()) {
-            if (game.isSecondLeaderAbilityUsed())
-                text = "Leader Ability used";
-            else
-                text = "Leader Ability not used";
-        } else
-            text = "Current champion is not a leader";
-        t.setText(text);
-        t.setStyle("-fx-font: normal bold 11 Langdon;" + "-fx-base: #AE3522;" + "-fx-text-fill: orange;");
-        leaderAbility.setTooltip(t);
+        leaderAbility.setOnMouseExited(e -> {
+            gifGridpane.getChildren().clear();
+            center.getChildren().remove(mainFrame.boardRoot.gifGridpane);
+            borderPane.setCenter(mainFrame.boardRoot.center);
+        });
 
 
         actions.setAlignment(Pos.CENTER);
