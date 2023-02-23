@@ -822,9 +822,6 @@ public class Controller {
 
     }
 
-
-
-
     public static Direction codeToDirection(KeyCode code) {
         switch (code) {
             case W:
@@ -1004,12 +1001,16 @@ public class Controller {
         updateHP();
         updateTurnOrder();
         updateBars();
-        updateAbilities(mainFrame.game.getCurrentChampion());
+        updateAbilities();
+        updateSideIcons();
         disableInactiveBars();
     }
 
     public static void onEndTurn() {
         mainFrame.game.endTurn();
+
+        mainFrame.game.getFirstPlayer().getTeam().get(1).setCurrentHP(0);
+
         update();
     }
 
@@ -1601,7 +1602,9 @@ public class Controller {
 
     }
 
-    public static void updateAbilities(Champion c){
+    public static void updateAbilities(){
+
+        Champion c = mainFrame.game.getCurrentChampion();
 
         for(int i=0; i<c.getAbilities().size(); i++){
             Ability a = c.getAbilities().get(i);
@@ -1676,6 +1679,18 @@ public class Controller {
         }
     }
 
+    public static void updateSideIcons(){
+
+        for(MySideIcon s : mainFrame.boardRoot.firstSideIcons)
+            if(s.champion.getCurrentHP()==0)
+                s.addRedCross();
+
+        for(MySideIcon s : mainFrame.boardRoot.secondSideIcons)
+            if(s.champion.getCurrentHP()==0)
+                s.addRedCross();
+
+
+    }
 
     // testing
 

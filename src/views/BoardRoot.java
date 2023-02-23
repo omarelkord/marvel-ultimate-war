@@ -57,9 +57,11 @@ public class BoardRoot extends StackPane {
     HBox firstPlayerBar3, secondPlayerBar3;
     ProgressBar secondPlayerBar1, secondPlayerBar2;
 
-
     ArrayList<Button> firstAbilityButtons;
     ArrayList<Button> secondAbilityButtons;
+
+    ArrayList<MySideIcon> firstSideIcons = new ArrayList<>();
+    ArrayList<MySideIcon> secondSideIcons = new ArrayList<>();
 
 
     VBox firstPlayerVBox;
@@ -499,10 +501,11 @@ public class BoardRoot extends StackPane {
         secondTeam.getChildren().add(secondPlayerName);
 
         for (Champion champion : game.getFirstPlayer().getTeam()) {
-            Button button = new Button();
 
-            button.getStylesheets().add(this.getClass().getResource("css/side-icons.css").toExternalForm());
-            button.getStyleClass().add(champion.getName().substring(0, 2));
+            MySideIcon sideIcon = new MySideIcon(champion);
+            this.firstSideIcons.add(sideIcon);
+
+            Button button = sideIcon.button;
 
             button.setOnAction(e -> {
                 popUpStats = Controller.getStatsPopUp(champion);
@@ -522,15 +525,15 @@ public class BoardRoot extends StackPane {
                 fadeTransition2.play();
             });
 
-            button.setPrefSize(100, 150);
+//            button.setPrefSize(100, 150);
             firstTeamButtons.add(button);
         }
 
         for (Champion champion : game.getSecondPlayer().getTeam()) {
-            Button button = new Button(champion.getName());
+            MySideIcon sideIcon = new MySideIcon(champion);
+            this.secondSideIcons.add(sideIcon);
 
-            button.getStylesheets().add(this.getClass().getResource("css/side-icons.css").toExternalForm());
-            button.getStyleClass().add(champion.getName().substring(0, 2));
+            Button button = sideIcon.button;
 
             button.setOnAction(e -> {
 
@@ -562,8 +565,8 @@ public class BoardRoot extends StackPane {
         secondTeam.setAlignment(Pos.CENTER);
 
 
-        firstTeam.getChildren().addAll(firstTeamButtons);
-        secondTeam.getChildren().addAll(secondTeamButtons);
+        firstTeam.getChildren().addAll(firstSideIcons);
+        secondTeam.getChildren().addAll(secondSideIcons);
 
 
         abilities.getChildren().add(abilityButtons);
