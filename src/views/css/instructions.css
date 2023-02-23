@@ -1,0 +1,16 @@
+.next:hover {
+   -fx-background-color: transparent;
+   -fx-graphic: url('../btn_imgs/next-button-hover.png');
+   -fx-cursor: hand;
+}
+.next:pressed {
+   -fx-background-color: transparent;
+   -fx-graphic: url('../btn_imgs/next-button.png');
+   -fx-cursor: hand;
+}
+
+.next {
+   -fx-background-color: transparent;
+   -fx-graphic: url('../btn_imgs/next-button.png');
+   -fx-cursor: hand;
+}

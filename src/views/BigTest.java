@@ -531,7 +531,7 @@ public class BigTest extends Application {
 
     public void start5(Stage stage){
 
-        StackPane root = new MyAlert("CHAMPION DISARMED", "You need at least one AP to move.");
+        StackPane root = new MyAlert("CHAMPION DISARMED", "You need at least one AP to move.","alert7");
 
 
         stage.setHeight(500);
@@ -540,7 +540,7 @@ public class BigTest extends Application {
         stage.show();
     }
 
-    public void start(Stage stage) throws Exception{
+    public void start6(Stage stage) throws Exception{
 
         Game.loadAbilities("Abilities.csv");
         Game.loadChampions("Champions.csv");
@@ -559,6 +559,14 @@ public class BigTest extends Application {
         stage.setFullScreen(true);
     }
 
+    public void start(Stage stage) throws Exception{
+
+        InstructionsRoot root = new InstructionsRoot(20);
+
+        stage.setScene(new Scene(root));
+        stage.show();
+        stage.setFullScreen(true);
+    }
 
     public static void createAbilitiesStyleSheet() throws IOException {
 

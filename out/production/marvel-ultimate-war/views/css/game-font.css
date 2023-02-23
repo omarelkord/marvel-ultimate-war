@@ -1,0 +1,118 @@
+@font-face {
+src: url("../fonts/SpaceMission-rgyw9.otf");
+}
+
+@font-face {
+src: url("../fonts/BruceForeverRegular-X3jd2.ttf");
+}
+
+@font-face {
+src: url("../fonts/Warungasem-rgO1O.ttf");
+}
+
+@font-face {
+src: url("../fonts/VerminVibesV-Zlg3.ttf");
+}
+
+.red{
+    -fx-text-fill:
+    linear-gradient(#E44E4F 20%, #AF1B1B 100%),
+    linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 1), 15, .7, 0.0, 0.0);
+    -fx-font-family: 'Vermin Vibes V';
+    -fx-font-size: 10px;
+ }
+
+
+.blue {
+-fx-font-family: 'Vermin Vibes V';
+-fx-font-size: 10px;
+-fx-text-fill: linear-gradient(#6cb0e4 20%, #2e65ac 100%);
+
+-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 1), 15, .7, 0.0, 0.0);
+}
+
+.green {
+-fx-font-family: 'Vermin Vibes V';
+-fx-font-size: 10px;
+-fx-text-fill: linear-gradient(#46b9ad 20%, #25AB6C 100%);
+
+-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 1), 15, .7, 0.0, 0.0);
+}
+
+
+.orange{
+-fx-font-family: 'Vermin Vibes V';
+-fx-font-size: 10px;
+-fx-text-fill:  linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
+                       linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+
+-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 1), 15, .7, 0.0, 0.0);
+}
+
+
+.red{
+    -fx-text-fill:
+    linear-gradient(#E44E4F 20%, #AF1B1B 100%),
+    linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 1), 15, .7, 0.0, 0.0);
+    -fx-font-family: 'Vermin Vibes V';
+    -fx-font-size: 10px;
+ }
+
+
+.blue-popup {
+-fx-font-family: 'Vermin Vibes V';
+-fx-font-size: 10px;
+-fx-text-fill: linear-gradient(#6cb0e4 20%, #2e65ac 100%);
+
+}
+.white-popup {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 10px;
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #646464 100%);
+
+
+}
+.white-popup-curr {
+-fx-font-family: 'Vermin Vibes V';
+-fx-font-size: 10px;
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #646464 100%);
+
+}
+
+.leader-font {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 30px;
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #010100 100%);
+
+}
+
+.select-leader-font {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 14px;
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #010100 100%);
+
+}
+
+.exception{
+
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 12px;
+-fx-text-fill: #FFFFFF;
+-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 8, .2, 0.0, 0.0);
+
+}
+
+.exception-msg{
+
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 10px;
+-fx-text-fill: #FFFFFF;
+-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 8, .2, 0.0, 0.0);
+
+
+}
+

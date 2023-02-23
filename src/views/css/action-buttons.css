@@ -1,77 +1,73 @@
 .attack{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/attackButton.png');
+    -fx-graphic: url('../btn_imgs/attack-btn.png');
+     -fx-cursor: hand;
 }
 
 .attack:hover{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/attackButtonGlow.png');
+    -fx-graphic: url('../btn_imgs/attack-btn-hover.png');
+     -fx-cursor: hand;
 }
 
 .attack:pressed{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/attackButton.png');
+    -fx-graphic: url('../btn_imgs/attack-btn.png');
+     -fx-cursor: hand;
 }
 
 
 .move{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/moveButton.png');
+    -fx-graphic: url('../btn_imgs/move-btn.png');
+     -fx-cursor: hand;
 }
 
 .move:hover{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/moveButtonGlow.png');
+    -fx-graphic: url('../btn_imgs/move-btn-hover.png');
+     -fx-cursor: hand;
 }
 
 .move:pressed{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/moveButton.png');
-}
-
-
-.cast{
-    -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/castButton.png');
-}
-
-.cast:hover{
-    -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/castButtonGlow.png');
-}
-
-.cast:pressed{
-    -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/castButton.png');
+    -fx-graphic: url('../btn_imgs/move-btn.png');
+     -fx-cursor: hand;
 }
 
 
 .end{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/endTurnButton.png');
+    -fx-graphic: url('../btn_imgs/endturn-btn.png');
+     -fx-cursor: hand;
 }
 
 .end:hover{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/endTurnButtonGlow.png');
+    -fx-graphic: url('../btn_imgs/endturn-btn-hover.png');
+     -fx-cursor: hand;
 }
 
 .end:pressed{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/endTurnButton.png');
+    -fx-graphic: url('../btn_imgs/endturn-btn.png');
+     -fx-cursor: hand;
 }
 
 .leader{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/leaderButton.png');
+    -fx-graphic: url('../btn_imgs/leader-btn.png');
+     -fx-cursor: hand;
 }
 
 .leader:hover{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/leaderButtonGlow.png');
+    -fx-graphic: url('../btn_imgs/leader-btn-hover.png');
+     -fx-cursor: hand;
 }
 
 .leader:pressed{
     -fx-background-color: transparent;
-    -fx-graphic: url('../btn_imgs/leaderButton.png');
+    -fx-graphic: url('../btn_imgs/leader-btn.png');
+     -fx-cursor: hand;
 }

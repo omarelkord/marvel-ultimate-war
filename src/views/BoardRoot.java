@@ -439,16 +439,6 @@ public class BoardRoot extends StackPane {
         });
 
 
-        Button castButton = new Button();
-        castButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
-        castButton.getStyleClass().add("cast");
-
-        castButton.setOnAction(e -> {
-            onClick();
-//            secondStackpane.setEffect(darknessEffect);
-//            addAbilitiesByButtons();
-        });
-
         Button endTurnButton = new Button();
         endTurnButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
         endTurnButton.getStyleClass().add("end");
@@ -487,7 +477,8 @@ public class BoardRoot extends StackPane {
 
 
         actions.setAlignment(Pos.CENTER);
-        actions.getChildren().addAll(moveButton, attackButton, castButton, endTurnButton, leaderAbility);
+        actions.getChildren().addAll(moveButton, attackButton, endTurnButton, leaderAbility);
+        actions.setSpacing(10);
 
         Label firstPlayerName = new Label(game.getFirstPlayer().getName() + "'s Team");
         firstPlayerName.setStyle("-fx-font: normal bold 14 Langdon;" + "-fx-text-fill: white;");

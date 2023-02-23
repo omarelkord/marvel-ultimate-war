@@ -14,6 +14,13 @@ src: url("../fonts/Warungasem-rgO1O.ttf");
 src: url("../fonts/VerminVibesV-Zlg3.ttf");
 }
 
+@font-face {
+src: url("../fonts/Enfonix-DEMO.otf");
+}
+@font-face {
+src: url("../fonts/NoiseGear.otf");
+}
+
 .red{
     -fx-text-fill:
     linear-gradient(#E44E4F 20%, #AF1B1B 100%),
@@ -113,6 +120,22 @@ src: url("../fonts/VerminVibesV-Zlg3.ttf");
 -fx-text-fill: #FFFFFF;
 -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 8, .2, 0.0, 0.0);
 
+
+}
+
+.instruction-title {
+-fx-font-family: 'Noise Gear';
+-fx-font-size: 70px;
+-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 100, 2, 0.0, 0.0);
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #010100 100%);
+
+
+}
+
+.instructions {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 12px;
+-fx-text-fill: #FFFFFF;
 
 }
 

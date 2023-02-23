@@ -11,9 +11,12 @@ import javafx.scene.layout.StackPane;
 
 public class MyAlert extends StackPane {
 
-    public MyAlert(String exception, String msg){
 
-        ImageView imageView = new ImageView(new Image("views/popup_imgs/alert7.png"));
+
+
+    public MyAlert(String exception, String msg, String imageName){
+
+        ImageView imageView = new ImageView(new Image("views/popup_imgs/"+imageName+".png"));
 
 
         Label exceptionLabel = new Label(exception);

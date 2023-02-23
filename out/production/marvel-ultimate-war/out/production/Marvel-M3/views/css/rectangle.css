@@ -1,0 +1,9 @@
+.background{
+    -fx-background-color: #E3E3E3;
+    -fx-cursor: hand;
+}
+
+.fill{
+    -fx-background-color: #247194;
+    -fx-cursor: hand;
+}

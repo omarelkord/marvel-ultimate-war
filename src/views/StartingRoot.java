@@ -53,7 +53,7 @@ public class StartingRoot extends VBox {
         label2.getStyleClass().add("outline");
 
 
-        HBox hbox1 = new HBox(11);
+        HBox hbox1 = new HBox(23);
         HBox hbox2 = new HBox(10);
 
 

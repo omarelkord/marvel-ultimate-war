@@ -1,0 +1,11 @@
+.select{
+    -fx-background-color: transparent;
+    -fx-graphic: url('../btn_imgs/selectButton.png');
+    -fx-cursor: hand
+}
+
+.back{
+    -fx-background-color: transparent;
+    -fx-graphic: url('../btn_imgs/backButtonArrow.png');
+    -fx-cursor: hand
+}

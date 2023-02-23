@@ -33,6 +33,8 @@ public class MainFrame extends Application {
     MapSelectionRoot mapSelectionRoot;
     GameOverRoot gameOverRoot;
 
+    InstructionsRoot instructionsRoot;
+
 
     public void start(Stage stage) throws IOException {
 //        music();

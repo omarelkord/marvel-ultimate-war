@@ -1,0 +1,11 @@
+.forest{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../cover_imgs/forestCover.png');
+   -fx-cursor: hand
+}
+
+.snow{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../cover_imgs/snowCover.png');
+   -fx-cursor: hand
+}
