@@ -8,6 +8,8 @@ import engine.Player;
 import engine.PriorityQueue;
 import exceptions.*;
 import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -38,6 +40,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static engine.Game.getAvailableChampions;
 
@@ -733,10 +736,50 @@ public class Controller {
         fadeTransition.play();
     }
 
-    public static void exceptionMessage(String header, String content) {
+    public static void exceptionMessage2(String header, String content) {
         alert.setHeaderText(header);
         alert.setContentText(content);
         alert.show();
+    }
+
+    public static void exceptionMessage(String header, String content){
+
+        ImageView blackImg = mainFrame.boardRoot.blackImg;
+//        ImageView alertBox = new ImageView(new Image("views/popup_imgs/alert4.png"));
+        StackPane stackPane = new MyAlert(header, content);
+
+        mainFrame.boardRoot.getChildren().add(blackImg);
+        mainFrame.boardRoot.getChildren().add(stackPane);
+
+        FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), blackImg);
+        fadeTransition1.setFromValue(0);
+        fadeTransition1.setToValue(1);
+
+        FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(500), blackImg);
+        fadeTransition2.setFromValue(1);
+        fadeTransition2.setToValue(0);
+
+
+        FadeTransition fadeTransition3 = new FadeTransition(Duration.millis(500), stackPane);
+        fadeTransition3.setFromValue(0);
+        fadeTransition3.setToValue(1);
+
+        FadeTransition fadeTransition4 = new FadeTransition(Duration.millis(500), stackPane);
+        fadeTransition4.setFromValue(1);
+        fadeTransition4.setToValue(0);
+
+
+        fadeTransition2.setOnFinished(e -> {
+            mainFrame.boardRoot.getChildren().clear();
+            mainFrame.boardRoot.getChildren().add(mainFrame.boardRoot.borderPane);
+        });
+
+        SequentialTransition seqTransition1 = new SequentialTransition(fadeTransition1, new PauseTransition(Duration.millis(2900)), fadeTransition2);
+        seqTransition1.play();
+
+        SequentialTransition seqTransition2 = new SequentialTransition(fadeTransition3, new PauseTransition(Duration.millis(2900)), fadeTransition4);
+        seqTransition2.play();
+
     }
 
     public static Direction codeToDirection(KeyCode code) {
@@ -1209,6 +1252,17 @@ public class Controller {
 
     }
 
+    public static String getChampColor(Champion c){
+        String name = c.getName();
+
+        return switch (name) {
+            case "Captain America", "Iceman", "Quicksilver", "Thor", "Venom" -> "blue";
+            case "Deadpool", "Dr Strange", "Ironman", "Spiderman" -> "red";
+            case "Hela", "Hulk" -> "green";
+            default -> "yellow";
+        };
+    }
+
     public static HBox getStatsPopUp(Champion c){
 
         MyProgressBar hpBar = new MyProgressBar("HP" , c.getCurrentHP(),c.getMaxHP());
@@ -1237,21 +1291,22 @@ public class Controller {
         closeBtn.getStyleClass().add("closeBtn");
 
         HBox root = new HBox(50);
-        root.setMaxSize(1080,250);
+        root.setMaxSize(1100,260);
 
-        root.setStyle("-fx-background-image: url('views/popup_imgs/selectionBgresized.png');");
+        root.setStyle("-fx-background-image: url('views/bg_imgs/" + getChampColor(c) + "-selection.png');");
 
         Button champ = new Button();
         champ.setPrefSize(100,100);
         champ.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/popup.css").toExternalForm());
         champ.getStyleClass().add(c.getName().substring(0,2));
-        champ.setPadding(new Insets(1,0,0,0));
+        champ.setPadding(new Insets(0,0,7,50));
 
         HBox champHbox = new HBox();
         champHbox.setAlignment(Pos.BOTTOM_LEFT);
         champHbox.getChildren().add(champ);
 
         HBox closeBtnHbox = new HBox();
+        closeBtnHbox.setPadding(new Insets(10,0,0,0));
         closeBtnHbox.getChildren().add(closeBtn);
         closeBtnHbox.setAlignment(Pos.TOP_RIGHT);
         HBox bars = new HBox(15);

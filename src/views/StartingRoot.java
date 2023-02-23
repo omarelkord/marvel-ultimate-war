@@ -61,6 +61,8 @@ public class StartingRoot extends VBox {
         hbox1.getChildren().addAll(label1, text1);
         hbox2.getChildren().addAll(label2, text2);
 
+//        hbox1.setStyle("-fx-background-color: aqua;");
+
         this.getChildren().add(hbox1);
         this.getChildren().add(hbox2);
 

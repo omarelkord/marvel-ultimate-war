@@ -531,25 +531,7 @@ public class BigTest extends Application {
 
     public void start5(Stage stage){
 
-        StackPane root = new StackPane();
-        root.setAlignment(Pos.BOTTOM_CENTER);
-
-        ColorAdjust colorAdjust = new ColorAdjust();
-        colorAdjust.setContrast(0.4);
-        colorAdjust.setBrightness(-0.5);
-        colorAdjust.setSaturation(1);
-//        colorAdjust.setHue(-0.8);
-
-        ImageView bgImg = new ImageView("views/bg_imgs/snowMap.png");
-        ImageView healGif = new ImageView("views/gifs/healTrial3.gif");
-        healGif.setEffect(colorAdjust);
-        healGif.setBlendMode(BlendMode.SCREEN);
-
-        ImageView healGif2 = new ImageView("views/gifs/healTrial2.gif");
-        healGif2.setEffect(colorAdjust);
-        healGif2.setBlendMode(BlendMode.SCREEN);
-
-        root.getChildren().addAll(bgImg, healGif);
+        StackPane root = new MyAlert("CHAMPION DISARMED", "You need at least one AP to move.");
 
 
         stage.setHeight(500);

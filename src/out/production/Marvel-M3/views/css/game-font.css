@@ -97,17 +97,22 @@ src: url("../fonts/VerminVibesV-Zlg3.ttf");
 
 }
 
-.effects-font {
+.exception{
+
 -fx-font-family: 'Bruce Forever Regular';
--fx-font-size: 13px;
--fx-text-fill: linear-gradient( #E8E2E2 20%, #646464 100%);
+-fx-font-size: 12px;
+-fx-text-fill: #FFFFFF;
+-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 8, .2, 0.0, 0.0);
 
 }
 
-.effects-font {
+.exception-msg{
+
 -fx-font-family: 'Bruce Forever Regular';
--fx-font-size: 50px;
--fx-text-fill: linear-gradient( #E8E2E2 20%, #646464 100%);
+-fx-font-size: 10px;
+-fx-text-fill: #FFFFFF;
+-fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 8, .2, 0.0, 0.0);
+
 
 }
 
