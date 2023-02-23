@@ -34,9 +34,7 @@ public class GameOverRoot extends VBox {
         }
 
         Button playAgain = new Button("PLAY AGAIN");
-        playAgain.setOnAction(e->{
-            fadeOut(mainFrame.gameOverRoot, mainFrame.startingRoot );
-        });
+        playAgain.setOnAction(e-> fadeOut(mainFrame.gameOverRoot, mainFrame.startingRoot ));
 
         this.setAlignment(Pos.CENTER);
         this.setSpacing(100);
