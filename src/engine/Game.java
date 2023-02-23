@@ -251,7 +251,7 @@ public class Game {
 			getCurrentChampion().setLocation(new Point(newx, newy));
 			getCurrentChampion().setCurrentActionPoints(getCurrentChampion().getCurrentActionPoints() - 1);
 		} else
-			throw new UnallowedMovementException("target cell is not empty");
+			throw new UnallowedMovementException("Target cell is not empty");
 
 	}
 
@@ -268,7 +268,7 @@ public class Game {
 		if (hasEffect(getCurrentChampion(), "Disarm"))
 			throw new ChampionDisarmedException("Can not attack while being disarmed");
 		if (getCurrentChampion().getCurrentActionPoints() < 2)
-			throw new NotEnoughResourcesException("You need at least two action point to perform a normal attack");
+			throw new NotEnoughResourcesException("You need at least two action points \n to perform a normal attack");
 		int currx = (int) getCurrentChampion().getLocation().getX();
 		int curry = (int) getCurrentChampion().getLocation().getY();
 		for (int i = 0; i < getCurrentChampion().getAttackRange(); i++) {
@@ -533,7 +533,7 @@ public class Game {
 					"you need at least " + a.getManaCost() + " mana to cast this ability");
 		else if (getCurrentChampion().getCurrentActionPoints() < a.getRequiredActionPoints())
 			throw new NotEnoughResourcesException(
-					"you need at least " + a.getRequiredActionPoints() + " action points to cast this ability");
+					"you need at least " + a.getRequiredActionPoints() + " action points \n to cast this ability");
 		else if (hasEffect(getCurrentChampion(), "Silence"))
 			throw new AbilityUseException("You can not cast an ability while being silenced");
 		else if (a.getCurrentCooldown() > 0)

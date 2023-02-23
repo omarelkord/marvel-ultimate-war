@@ -25,7 +25,6 @@ public class MapSelectionRoot extends StackPane {
     Button snowButton;
     Button galaxyButton;
     Button fightButton;
-
     String mapChosen;
 
     VBox container;
@@ -45,6 +44,7 @@ public class MapSelectionRoot extends StackPane {
 
         this.getChildren().add(alertImg);
         this.getChildren().add(container);
+
 
 
         forestButton = new Button();
