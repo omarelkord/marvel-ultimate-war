@@ -193,7 +193,7 @@ public class Controller {
 
     public static void onSwitchToMap() {
 //        mainFrame.game = new Game(mainFrame.firstPlayer, mainFrame.secondPlayer);
-        mainFrame.mapSelectionRoot = new MapSelectionRoot();
+        mainFrame.mapSelectionRoot = new MapSelectionRoot(mainFrame.game);
 
         fadeOut(mainFrame.leaderRoot, mainFrame.mapSelectionRoot);
     }
@@ -990,9 +990,6 @@ public class Controller {
         }
         return null;
     }
-
-
-
 
 
     public static void update() {
