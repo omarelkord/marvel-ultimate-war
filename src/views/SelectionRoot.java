@@ -17,9 +17,12 @@ import static engine.Game.getAvailableChampions;
 import static engine.Game.loadChampions;
 import static views.Controller.*;
 
-public class SelectionRoot extends VBox {
+public class SelectionRoot extends StackPane {
+
+    VBox selectionRoot;
 
     HBox championButtons;
+
     BorderPane hboxStats;
     ArrayList<Button> buttonList = new ArrayList<>();
     ArrayList<Button> chosenList = new ArrayList<>();
@@ -39,6 +42,8 @@ public class SelectionRoot extends VBox {
     public SelectionRoot() throws IOException {
         super();
 
+        selectionRoot = new VBox();
+
         firstClick = true;
         select = new Button();
         select.setPrefSize(100, 30);
@@ -50,11 +55,11 @@ public class SelectionRoot extends VBox {
         back.getStyleClass().add("back");
         back.setPrefSize(100, 30);
 
-        this.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
+        selectionRoot.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
 
         championButtons = new HBox(-110);
 
-        this.setAlignment(Pos.BOTTOM_CENTER);
+        selectionRoot.setAlignment(Pos.BOTTOM_CENTER);
 
         Game.loadAbilities("Abilities.csv");
         Game.loadChampions("Champions.csv");
@@ -73,14 +78,9 @@ public class SelectionRoot extends VBox {
         hboxStats = new BorderPane();
         hboxStats.setPrefSize(1200, 620);
         VBox.setVgrow(hboxStats, Priority.ALWAYS);
-        //hboxStats.getChildren().add(selectionLabel);
-
-
-//        next = new Button("NEXT FRAME!");
-//        next.setOnAction(e -> onSwitchToBoard());
-//        hboxStats.getChildren().add(next);
 
         int i = 0;
+
 
         for (Champion c : availableChampions) {
 
@@ -95,7 +95,7 @@ public class SelectionRoot extends VBox {
             i++;
         }
 
-        this.getChildren().add(hboxStats);
+        selectionRoot.getChildren().add(hboxStats);
         vboxBack = new VBox();
         vboxBack.setAlignment(Pos.BOTTOM_CENTER);
 
@@ -106,7 +106,9 @@ public class SelectionRoot extends VBox {
         hboxStats.setRight(vboxSelect);
 
         scrollPane.setContent(championButtons);
-        this.getChildren().add(scrollPane);
+        selectionRoot.getChildren().add(scrollPane);
+
+        this.getChildren().add(selectionRoot);
 
     }
 }

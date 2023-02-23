@@ -42,20 +42,20 @@ public class StartingRoot extends VBox {
         text2.setPrefSize(160, 30);
 
         Label label1 = new Label("PLAYER 1:");
-//label1.setFont(new Font("Consolas", 20));
+
         label1.getStylesheets().add(this.getClass().getResource("css/starting-label.css").toExternalForm());
         label1.getStyleClass().add("outline");
-//label1.setTextFill(Color.web("white"));
 
         Label label2 = new Label("PLAYER 2:");
-//label2.setFont(new Font("Consolas", 20));
+
+
         label2.getStylesheets().add(this.getClass().getResource("css/starting-label.css").toExternalForm());
         label2.getStyleClass().add("outline");
-//label2.setTextFill(Color.web("white"));
 
 
-        HBox hbox1 = new HBox(10);
-        HBox hbox2 = new HBox(10);
+        HBox hbox1 = new HBox(100);
+        hbox1.setStyle("-fx-background-color: red;");
+        HBox hbox2 = new HBox(100);
 
 
         hbox1.getChildren().addAll(label1, text1);
@@ -70,7 +70,6 @@ public class StartingRoot extends VBox {
         playButton = new Button();
         playButton.setStyle("-fx-graphic: url('views/btn_imgs/startButton.png'); " +
                             "-fx-background-color: transparent;");
-
 
         this.getChildren().add(playButton);
     }

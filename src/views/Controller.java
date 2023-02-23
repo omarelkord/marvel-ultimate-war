@@ -156,6 +156,9 @@ public class Controller {
 //            mainFrame.selectionRoot.hboxStats.getChildren().add(mainFrame.selectionRoot.selectionLabel);
 //        }
 
+        if(mainFrame.firstPlayer.getTeam().size()==3){
+            //add popup saying second player select your team
+        }
         if (mainFrame.secondPlayer.getTeam().size() == 3) {
             onSwitchToLeader();
         }
@@ -1054,6 +1057,9 @@ public class Controller {
         } catch (Exception e) {
             exceptionMessage("Invalid action", e.getMessage());
         }
+    }
+    public static void onLeaderAbility2() {
+        onSwitchToGameOver(mainFrame.firstPlayer);
     }
 
     public static void gameOver() {

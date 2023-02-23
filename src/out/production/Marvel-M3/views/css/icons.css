@@ -1,0 +1,149 @@
+
+.Ca{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/captainAmericaIcon.png');
+   -fx-cursor: hand
+
+}
+
+
+/*                      DEADPOOL                  */
+
+.De{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/deadpoolIcon.png');
+      -fx-cursor: hand
+
+
+}
+
+/*                  DOCTOR STRANGE                  */
+
+.Dr{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/doctorStrangeIcon.png');
+      -fx-cursor: hand
+
+
+}
+
+
+
+/*                      ELECTRO                  */
+
+.El{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/electroIcon.png');
+   -fx-cursor: hand
+}
+
+
+/*                    GHOST RIDER                  */
+
+.Gh{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/ghostRiderIcon.png');
+   -fx-cursor: hand
+}
+
+
+/*                      HELA                  */
+
+.He{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/helaicon.png');
+      -fx-cursor: hand
+
+
+}
+
+
+/*                      HULK                  */
+
+.Hu{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/hulkIcon.png');
+      -fx-cursor: hand
+
+
+}
+
+/*                     ICEMAN                  */
+
+.Ic{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/icemanIcon.png');
+      -fx-cursor: hand
+
+}
+
+/*                    IRONMAN                  */
+
+.Ir{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/ironmanIcon.png');
+      -fx-cursor: hand
+
+}
+
+/*                    LOKI                  */
+
+.Lo{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/lokiicon.png');
+      -fx-cursor: hand
+
+}
+
+
+/*                  QUICKSILVER                  */
+
+.Qu{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/quicksilverIcon.png');
+      -fx-cursor: hand
+
+
+}
+
+
+/*                    SPIDERMAN                  */
+
+.Sp{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/spidermanIcon.png');
+      -fx-cursor: hand
+
+}
+
+/*                    THOR                  */
+
+.Th{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/thorIcon.png');
+      -fx-cursor: hand
+
+}
+
+
+/*                    VENOM                  */
+
+.Ve{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/venomicon.png');
+      -fx-cursor: hand
+
+}
+
+/*                YELLOW JACKET               */
+
+.Ye{
+   -fx-background-color: transparent;
+   -fx-graphic: url('../champ_imgs/yellowicon.png');
+      -fx-cursor: hand
+
+}
+
+
+
+

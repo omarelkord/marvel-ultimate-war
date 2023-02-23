@@ -1,6 +1,7 @@
 package views;
 
 import engine.Game;
+import engine.Player;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,6 +20,8 @@ import model.abilities.Ability;
 import model.world.Champion;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 
 // shows a progress bar whose bar changes color depending on the amount of progress.
 public class BigTest extends Application {
@@ -526,7 +529,7 @@ public class BigTest extends Application {
 
     }
 
-    public void start(Stage stage){
+    public void start5(Stage stage){
 
         StackPane root = new StackPane();
         root.setAlignment(Pos.BOTTOM_CENTER);
@@ -555,6 +558,24 @@ public class BigTest extends Application {
         stage.show();
     }
 
+    public void start(Stage stage) throws Exception{
+
+        Game.loadAbilities("Abilities.csv");
+        Game.loadChampions("Champions.csv");
+
+        ArrayList<Champion> champions = Game.getAvailableChampions();
+
+        Player firstPlayer = new Player("Omar");
+
+        Collections.addAll(firstPlayer.getTeam(), champions.get(0), champions.get(2), champions.get(3));
+
+        GameOverRoot root = new GameOverRoot(firstPlayer);
+
+
+        stage.setScene(new Scene(root));
+        stage.show();
+        stage.setFullScreen(true);
+    }
 
 
     public static void createAbilitiesStyleSheet() throws IOException {
