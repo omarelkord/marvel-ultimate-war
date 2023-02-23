@@ -119,7 +119,12 @@ src: url("../fonts/NoiseGear.otf");
 -fx-font-size: 10px;
 -fx-text-fill: #FFFFFF;
 -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 8, .2, 0.0, 0.0);
+}
 
+.map-sel-font {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 24px;
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #E7EDE9 100%);
 
 }
 

@@ -186,7 +186,7 @@ public class Controller {
 
     public static void onSwitchToMap() {
 //        mainFrame.game = new Game(mainFrame.firstPlayer, mainFrame.secondPlayer);
-        mainFrame.mapSelectionRoot = new MapSelectionRoot(10);
+        mainFrame.mapSelectionRoot = new MapSelectionRoot(mainFrame.game);
 
         fadeOut(mainFrame.instructionsRoot, mainFrame.mapSelectionRoot);
     }
@@ -823,9 +823,6 @@ public class Controller {
 
     }
 
-
-
-
     public static Direction codeToDirection(KeyCode code) {
         switch (code) {
             case W:
@@ -996,16 +993,14 @@ public class Controller {
     }
 
 
-
-
-
     public static void update() {
 //        updateGrid();
         startGrid();
         updateHP();
         updateTurnOrder();
         updateBars();
-        updateAbilities(mainFrame.game.getCurrentChampion());
+        updateAbilities();
+        updateSideIcons();
         disableInactiveBars();
     }
 
@@ -1602,7 +1597,9 @@ public class Controller {
 
     }
 
-    public static void updateAbilities(Champion c){
+    public static void updateAbilities(){
+
+        Champion c = mainFrame.game.getCurrentChampion();
 
         for(int i=0; i<c.getAbilities().size(); i++){
             Ability a = c.getAbilities().get(i);
@@ -1677,8 +1674,20 @@ public class Controller {
         }
     }
 
+    public static void updateSideIcons(){
 
-    // testing 
+        for(MySideIcon s : mainFrame.boardRoot.firstSideIcons)
+            if(s.champion.getCurrentHP()==0)
+                s.addRedCross();
+
+        for(MySideIcon s : mainFrame.boardRoot.secondSideIcons)
+            if(s.champion.getCurrentHP()==0)
+                s.addRedCross();
+
+
+    }
+
+    // testing
 
 
 }
