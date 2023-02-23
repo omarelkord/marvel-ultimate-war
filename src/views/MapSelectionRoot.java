@@ -40,7 +40,7 @@ public class MapSelectionRoot extends StackPane {
         BoardRoot snowMapPreview = new BoardRoot(game, "snow");
         BoardRoot galaxyMapPreview = new BoardRoot(game, "galaxy");
 
-        container = new VBox();
+        container = new VBox(10);
         container.setAlignment(Pos.CENTER);
 
         this.getChildren().add(alertImg);
@@ -76,8 +76,10 @@ public class MapSelectionRoot extends StackPane {
             this.getChildren().add(1, blackImg);
         });
 
-        snowButton.setOnMouseExited(e -> this.getChildren().remove(0, 1));
-
+        snowButton.setOnMouseExited(e -> {
+            this.getChildren().remove(0);
+            this.getChildren().remove(0);
+        });
         snowButton.getStylesheets().add(this.getClass().getResource("css/map-btns.css").toExternalForm());
         snowButton.getStyleClass().add("snow");
 
@@ -109,7 +111,7 @@ public class MapSelectionRoot extends StackPane {
 //        promptLabel.setStyle("-fx-font: normal bold 30 Langdon;" + "-fx-text-fill: white;");
 
         container.getChildren().addAll(promptLabel, mapButtons);
-//        container.setStyle("-fx-background-color: #11554A;");
+        this.setStyle("-fx-background-image: url('views/bg_imgs/mapBG3.png');");
 
     }
 

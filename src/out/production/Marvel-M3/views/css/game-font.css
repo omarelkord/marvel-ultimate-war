@@ -117,7 +117,7 @@ src: url("../fonts/VerminVibesV-Zlg3.ttf");
 .map-sel-font {
 -fx-font-family: 'Bruce Forever Regular';
 -fx-font-size: 24px;
--fx-text-fill: linear-gradient( #E8E2E2 20%, #F4F7F5 100%);
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #E7EDE9 100%);
 
 }
 
