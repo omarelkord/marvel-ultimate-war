@@ -1,14 +1,19 @@
 package views;
 
+import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 import static views.Controller.*;
 
-public class MapSelectionRoot extends VBox {
+public class MapSelectionRoot extends StackPane {
 
     HBox mapButtons;
     Label promptLabel;
@@ -19,16 +24,41 @@ public class MapSelectionRoot extends VBox {
 
     String mapChosen;
 
-    public MapSelectionRoot(double v) {
-        super(v);
-        this.setAlignment(Pos.CENTER);
+    VBox container;
+
+    public MapSelectionRoot() {
+        super();
+
+        container = new VBox();
+
+        container.setAlignment(Pos.CENTER);
+
+        ImageView blackImg = new ImageView(new Image("views/gen_imgs/black-img.png"));
 
         forestButton = new Button();
-        forestButton.setOnAction(e -> onSwitchToBoard("forest"));
-        forestButton.setOnMouseEntered(e -> this.setStyle("-fx-background-image: url('views/bg_imgs/avengersForest.png');"));
-        forestButton.setOnMouseExited(e -> this.setStyle("-fx-background-color: #11554A;"));
+//        forestButton.setOnAction(e -> onSwitchToBoard("forest"));
+        forestButton.setOnMouseEntered(e -> container.setStyle("-fx-background-image: url('views/bg_imgs/forestMapPreview2.png');"));
+        forestButton.setOnMouseExited(e -> container.setStyle("-fx-background-color: #11554A;"));
         forestButton.getStylesheets().add(this.getClass().getResource("css/map-btns.css").toExternalForm());
         forestButton.getStyleClass().add("forest");
+//        forestButton.setOnAction(e -> {
+//
+//            ImageView preview = new ImageView(new Image("views/bg_imgs/forestMapPreview.png"));
+//
+//            this.getChildren().add(blackImg);
+//            this.getChildren().add(preview);
+//
+//
+//            FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), blackImg);
+//            FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(500), preview);
+//            fadeTransition1.setFromValue(0);
+//            fadeTransition1.setToValue(1);
+//            fadeTransition1.play();
+//
+//            fadeTransition2.setFromValue(0);
+//            fadeTransition2.setToValue(1);
+//            fadeTransition2.play();
+//        });
 
 
         snowButton = new Button();
@@ -46,6 +76,7 @@ public class MapSelectionRoot extends VBox {
         galaxyButton.getStylesheets().add(this.getClass().getResource("css/map-btns.css").toExternalForm());
         galaxyButton.getStyleClass().add("galaxy");
 
+
         mapButtons = new HBox(10);
         mapButtons.setAlignment(Pos.CENTER);
         mapButtons.getChildren().addAll(forestButton, snowButton, galaxyButton);
@@ -53,10 +84,11 @@ public class MapSelectionRoot extends VBox {
         promptLabel = new Label("SELECT A MAP TO FIGHT!");
         promptLabel.setStyle("-fx-font: normal bold 30 Langdon;" + "-fx-text-fill: white;");
 
-        this.getChildren().addAll(promptLabel, mapButtons);
+        container.getChildren().addAll(promptLabel, mapButtons);
 
-        this.setStyle("-fx-background-color: #11554A;");
+        container.setStyle("-fx-background-color: #11554A;");
 
+        this.getChildren().add(container);
     }
 
 }

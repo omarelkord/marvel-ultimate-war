@@ -193,7 +193,7 @@ public class Controller {
 
     public static void onSwitchToMap() {
 //        mainFrame.game = new Game(mainFrame.firstPlayer, mainFrame.secondPlayer);
-        mainFrame.mapSelectionRoot = new MapSelectionRoot(10);
+        mainFrame.mapSelectionRoot = new MapSelectionRoot();
 
         fadeOut(mainFrame.leaderRoot, mainFrame.mapSelectionRoot);
     }
@@ -1008,9 +1008,6 @@ public class Controller {
 
     public static void onEndTurn() {
         mainFrame.game.endTurn();
-
-        mainFrame.game.getFirstPlayer().getTeam().get(1).setCurrentHP(0);
-
         update();
     }
 
