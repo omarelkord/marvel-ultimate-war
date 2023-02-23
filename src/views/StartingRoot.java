@@ -53,9 +53,8 @@ public class StartingRoot extends VBox {
         label2.getStyleClass().add("outline");
 
 
-        HBox hbox1 = new HBox(100);
-        hbox1.setStyle("-fx-background-color: red;");
-        HBox hbox2 = new HBox(100);
+        HBox hbox1 = new HBox(11);
+        HBox hbox2 = new HBox(10);
 
 
         hbox1.getChildren().addAll(label1, text1);

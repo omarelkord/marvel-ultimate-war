@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import model.world.Champion;
 
@@ -19,7 +21,7 @@ import static views.Controller.*;
 
 public class SelectionRoot extends StackPane {
 
-    VBox selectionRoot;
+    VBox selectionRootVbox;
 
     HBox championButtons;
 
@@ -42,7 +44,7 @@ public class SelectionRoot extends StackPane {
     public SelectionRoot() throws IOException {
         super();
 
-        selectionRoot = new VBox();
+        selectionRootVbox = new VBox();
 
         firstClick = true;
         select = new Button();
@@ -55,11 +57,11 @@ public class SelectionRoot extends StackPane {
         back.getStyleClass().add("back");
         back.setPrefSize(100, 30);
 
-        selectionRoot.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
+        selectionRootVbox.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
 
         championButtons = new HBox(-110);
 
-        selectionRoot.setAlignment(Pos.BOTTOM_CENTER);
+        selectionRootVbox.setAlignment(Pos.BOTTOM_CENTER);
 
         Game.loadAbilities("Abilities.csv");
         Game.loadChampions("Champions.csv");
@@ -95,7 +97,7 @@ public class SelectionRoot extends StackPane {
             i++;
         }
 
-        selectionRoot.getChildren().add(hboxStats);
+        selectionRootVbox.getChildren().add(hboxStats);
         vboxBack = new VBox();
         vboxBack.setAlignment(Pos.BOTTOM_CENTER);
 
@@ -106,9 +108,9 @@ public class SelectionRoot extends StackPane {
         hboxStats.setRight(vboxSelect);
 
         scrollPane.setContent(championButtons);
-        selectionRoot.getChildren().add(scrollPane);
+        selectionRootVbox.getChildren().add(scrollPane);
 
-        this.getChildren().add(selectionRoot);
+        this.getChildren().add(selectionRootVbox);
 
     }
 }

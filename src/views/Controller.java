@@ -782,6 +782,49 @@ public class Controller {
 
     }
 
+
+    public static void selectionPopup(String playerName){
+
+        ImageView blackImg = new ImageView(new Image("views/gen_imgs/black-img.png"));
+        StackPane stackPane = new MyAlert("Alert", playerName + "choose three champions for your team");
+
+        mainFrame.selectionRoot.getChildren().add(blackImg);
+        mainFrame.selectionRoot.getChildren().add(stackPane);
+
+        FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), blackImg);
+        fadeTransition1.setFromValue(0);
+        fadeTransition1.setToValue(1);
+
+        FadeTransition fadeTransition2 = new FadeTransition(Duration.millis(500), blackImg);
+        fadeTransition2.setFromValue(1);
+        fadeTransition2.setToValue(0);
+
+
+        FadeTransition fadeTransition3 = new FadeTransition(Duration.millis(500), stackPane);
+        fadeTransition3.setFromValue(0);
+        fadeTransition3.setToValue(1);
+
+        FadeTransition fadeTransition4 = new FadeTransition(Duration.millis(500), stackPane);
+        fadeTransition4.setFromValue(1);
+        fadeTransition4.setToValue(0);
+
+
+        fadeTransition2.setOnFinished(e -> {
+            mainFrame.selectionRoot.getChildren().clear();
+            mainFrame.selectionRoot.getChildren().add(mainFrame.selectionRoot.selectionRootVbox);
+        });
+
+        SequentialTransition seqTransition1 = new SequentialTransition(fadeTransition1, new PauseTransition(Duration.millis(2900)), fadeTransition2);
+        seqTransition1.play();
+
+        SequentialTransition seqTransition2 = new SequentialTransition(fadeTransition3, new PauseTransition(Duration.millis(2900)), fadeTransition4);
+        seqTransition2.play();
+
+    }
+
+
+
+
     public static Direction codeToDirection(KeyCode code) {
         switch (code) {
             case W:
