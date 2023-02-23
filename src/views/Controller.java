@@ -1089,6 +1089,7 @@ public class Controller {
         updateSideIcons();
         disableInactiveBars();
         updateLeaderTooltip();
+        gameOver();
     }
 
     public static void onEndTurn() {
@@ -1229,8 +1230,6 @@ public class Controller {
             gameOver();
 
             addGifsLeader(c, targets);
-
-
 
         } catch (Exception e) {
             exceptionMessage("Invalid action", e.getMessage());
