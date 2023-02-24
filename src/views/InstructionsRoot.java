@@ -14,9 +14,9 @@ import javafx.scene.layout.VBox;
 
 public class InstructionsRoot extends StackPane {
 
-    public InstructionsRoot(int i){
+    public InstructionsRoot(){
 
-        VBox root = new VBox(i);
+        VBox root = new VBox(-10);
 
         //this.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
         this.setStyle("-fx-background-image: url('views/bg_imgs/mapBG3.png');");
@@ -54,6 +54,8 @@ public class InstructionsRoot extends StackPane {
 
         Label coversHP = new Label("6. Hover on the covers on yhe board to view their current HP");
 
+        Label rings = new Label("8. Hover on any action button to view its potential targets on the board");
+
 
         move.getStylesheets().add(this.getClass().getResource("css/game-font.css").toExternalForm());
         move.getStyleClass().add("instructions");
@@ -76,9 +78,12 @@ public class InstructionsRoot extends StackPane {
         coversHP.getStylesheets().add(this.getClass().getResource("css/game-font.css").toExternalForm());
         coversHP.getStyleClass().add("instructions");
 
-        instructions.getChildren().addAll( move,attack,ability, leaderAbility , champInfo, coversHP,endturn);
+        rings.getStylesheets().add(this.getClass().getResource("css/game-font.css").toExternalForm());
+        rings.getStyleClass().add("instructions");
+
+        instructions.getChildren().addAll( move,attack,ability, leaderAbility , champInfo, coversHP,endturn, rings);
         instructions.setAlignment(Pos.CENTER_LEFT);
-        instructions.setPadding(new Insets(0,0,0,280));
+        instructions.setPadding(new Insets(40,0,0,320));
 
         HBox next = new HBox();
         Button nextBtn = new Button();

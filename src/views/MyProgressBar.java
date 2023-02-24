@@ -13,9 +13,9 @@ public class MyProgressBar extends VBox {
     public MyProgressBar (String title , int currVar, double maxVar){
 
         ProgressBar bar = new ProgressBar(currVar/maxVar);
-//        bar.setPrefSize(230,4);
-//        bar.getStylesheets().add(this.getClass().getResource("css/bar-colors.css").toExternalForm());
-//        bar.getStyleClass().add("shiny-white");
+        bar.setPrefSize(230,4);
+        bar.getStylesheets().add(this.getClass().getResource("css/bar-colors.css").toExternalForm());
+        bar.getStyleClass().add("shiny-white");
 
         HBox hbox = new HBox(10);
 //        hbox.setPrefWidth(1000);
