@@ -47,6 +47,8 @@ public class BoardTest extends Application {
         stage.setTitle("Marvel - Ultimate War!");
         stage.setScene(scene);
         stage.show();
+        stage.setHeight(1500);
+        stage.setWidth(1500);
         stage.setFullScreen(true);
 
     }
