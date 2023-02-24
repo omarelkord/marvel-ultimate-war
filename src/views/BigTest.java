@@ -561,7 +561,7 @@ public class BigTest extends Application {
 
     public void start(Stage stage) throws Exception{
 
-        InstructionsRoot root = new InstructionsRoot(20);
+        InstructionsRoot root = new InstructionsRoot();
 
         stage.setScene(new Scene(root));
         stage.show();

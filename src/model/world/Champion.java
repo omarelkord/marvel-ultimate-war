@@ -95,7 +95,15 @@ public abstract class Champion implements Damageable, Comparable {
     }
 
     public void setMana(int mana) {
-        this.mana = mana;
+
+        if(mana > this.getMaxMana()) {
+            mana = this.getMaxMana();
+        }
+        else if(mana < 0) {
+            mana = 0;
+        }
+        else
+            this.mana = mana;
     }
 
     public int getAttackDamage() {

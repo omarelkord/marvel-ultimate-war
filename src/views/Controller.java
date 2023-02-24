@@ -266,7 +266,7 @@ public class Controller {
 
     public static void onSwitchToInstructions() {
 
-        mainFrame.instructionsRoot = new InstructionsRoot(20);
+        mainFrame.instructionsRoot = new InstructionsRoot();
         fadeOut(mainFrame.leaderRoot, mainFrame.instructionsRoot);
     }
 
@@ -986,8 +986,6 @@ public class Controller {
                 exceptionMessage("Not Enough Resources!", resource.getMessage());
             }
         });
-
-
     }
 
     public static Object[][] clone(Object[][] b){
@@ -1125,6 +1123,7 @@ public class Controller {
 
     public static void onEndTurn() {
         mainFrame.game.endTurn();
+
         update();
     }
 
