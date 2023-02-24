@@ -389,9 +389,6 @@ public class BoardRoot extends StackPane {
 
 
 
-
-
-
         actions = new HBox();
 //        actions.setPrefHeight(150);
 //        actions.setStyle("-fx-background-color: #ADD8E6");
@@ -409,7 +406,7 @@ public class BoardRoot extends StackPane {
 //        firstTeam.setStyle("-fx-background-color: #ADD8E6");
 
         Button moveButton = new Button();
-        moveButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
+        moveButton.getStylesheets().add(this.getClass().getResource("css/"+mapChosen+"-action-buttons.css").toExternalForm());
         moveButton.getStyleClass().add("move");
 
         moveButton.setOnAction(e -> {
@@ -420,7 +417,7 @@ public class BoardRoot extends StackPane {
         });
 
         Button attackButton = new Button();
-        attackButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
+        attackButton.getStylesheets().add(this.getClass().getResource("css/"+mapChosen+"-action-buttons.css").toExternalForm());
         attackButton.getStyleClass().add("attack");
 
         attackButton.setOnAction(e -> {
@@ -442,7 +439,7 @@ public class BoardRoot extends StackPane {
 
 
         Button endTurnButton = new Button();
-        endTurnButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
+        endTurnButton.getStylesheets().add(this.getClass().getResource("css/"+mapChosen+"-action-buttons.css").toExternalForm());
         endTurnButton.getStyleClass().add("end");
 
         endTurnButton.setOnAction(e -> {
@@ -453,7 +450,7 @@ public class BoardRoot extends StackPane {
 
 
         Button leaderAbility = new Button();
-        leaderAbility.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
+        leaderAbility.getStylesheets().add(this.getClass().getResource("css/"+mapChosen+"-action-buttons.css").toExternalForm());
         leaderAbility.getStyleClass().add("leader");
 
         leaderAbility.setOnAction(e -> onLeaderAbility());

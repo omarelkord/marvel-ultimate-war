@@ -1362,7 +1362,7 @@ public class Controller {
 
         if(!c.getAppliedEffects().isEmpty()){
             Label title = new Label("EFFECTS: ");
-            title.getStylesheets().add(Controller.class.getResource("game-font.css").toExternalForm());
+            title.getStylesheets().add(Controller.class.getResource("css/game-font.css").toExternalForm());
             title.getStyleClass().add("effects-font");
 
             effectsHbox.getChildren().clear();
@@ -1374,7 +1374,7 @@ public class Controller {
 
         for (Effect e: c.getAppliedEffects()) {
             Label effect = new Label(e.getName() + " (" + e.getDuration() + ")" );
-            effect.getStylesheets().add(Controller.class.getResource("game-font.css").toExternalForm());
+            effect.getStylesheets().add(Controller.class.getResource("css/game-font.css").toExternalForm());
             effect.getStyleClass().add("effects-font");
 
             effectsHbox.getChildren().add(effect);

@@ -93,14 +93,14 @@ src: url("../fonts/NoiseGear.otf");
 .leader-font {
 -fx-font-family: 'Bruce Forever Regular';
 -fx-font-size: 30px;
--fx-text-fill: linear-gradient( #E8E2E2 20%, #010100 100%);
+    -fx-text-fill: linear-gradient( #E8E2E2 20%, #a7a7a7 100%);
 
 }
 
 .select-leader-font {
 -fx-font-family: 'Bruce Forever Regular';
 -fx-font-size: 14px;
--fx-text-fill: linear-gradient( #E8E2E2 20%, #010100 100%);
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #a7a7a7 100%);
 
 }
 
@@ -131,7 +131,7 @@ src: url("../fonts/NoiseGear.otf");
 .instruction-title {
 -fx-font-family: 'Noise Gear';
 -fx-font-size: 70px;
--fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 100, 2, 0.0, 0.0);
+-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, .7), 10, 0.2, 0.0, 0.0);
 -fx-text-fill: linear-gradient( #E8E2E2 20%, #010100 100%);
 
 
@@ -143,4 +143,6 @@ src: url("../fonts/NoiseGear.otf");
 -fx-text-fill: #FFFFFF;
 
 }
+
+
 

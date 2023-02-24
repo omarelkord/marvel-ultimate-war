@@ -18,7 +18,7 @@ public class InstructionsRoot extends StackPane {
 
         VBox root = new VBox(i);
 
-        root.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
+        this.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
         root.setAlignment(Pos.CENTER);
 
         Label title = new Label("GAME RULES");
@@ -95,7 +95,7 @@ public class InstructionsRoot extends StackPane {
 
         ImageView border = new ImageView(new Image("views/gen_imgs/borderInstructions-img.png"));
 
-        this.getChildren().addAll(root,border);
+        this.getChildren().addAll(border,root);
 
     }
 }
