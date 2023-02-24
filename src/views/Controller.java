@@ -415,6 +415,25 @@ public class Controller {
 
     public static void addGifs(Ability a, ArrayList<Damageable> targets, Object[][] b){
 
+
+        if(targets == null) {
+            System.out.println("Targets are NULL");
+            return;
+        }
+
+//        for(Damageable d : targets){
+//
+//            System.out.print("gif targets: ");
+//
+//            if(d == null)
+//                System.out.print("null, ");
+//            else if(d instanceof Cover)
+//                System.out.print("Cover" + ((Cover) d).getLocation() + ", ");
+//            else if(d instanceof Champion)
+//                System.out.println(((Champion) d).getName());
+//        }
+
+
         String gifType;
 
         //attack
@@ -906,9 +925,7 @@ public class Controller {
     }
 
     public static void onMoveButton(KeyCode code) {
-        System.out.println("Entered onMoveButton");
         Direction dir = codeToDirection(code);
-        System.out.println(dir);
 
         Point oldLocation = mainFrame.game.getCurrentChampion().getLocation();
         int oldX = oldLocation.x;
@@ -948,23 +965,28 @@ public class Controller {
         startGrid();
     }
 
-    public static void onAttackButton(KeyCode code) {
-        Direction dir = codeToDirection(code);
-        Object[][] board = clone(mainFrame.game.getBoard());
-        ArrayList<Damageable> targets = mainFrame.game.getTargetOfAttack(dir);
+    public static void onAttackButton() {
 
-        try {
-            mainFrame.game.attack(dir);
-            update();
-            gameOver();
-            addGifs(null, targets, board);
+        mainFrame.boardRoot.setOnKeyPressed(e -> {
+            Object[][] board = clone(mainFrame.game.getBoard());
+            AtomicReference<ArrayList<Damageable>> targets = new AtomicReference<>();
 
+            Direction dir = codeToDirection(e.getCode());
+            targets.set(mainFrame.game.getTargetOfAttack(dir));
 
-        } catch (ChampionDisarmedException disarm) {
-            exceptionMessage("Champion Disarmed!", disarm.getMessage());
-        } catch (NotEnoughResourcesException resource) {
-            exceptionMessage("Not Enough Resources!", resource.getMessage());
-        }
+            try {
+                mainFrame.game.attack(dir);
+
+                update();
+                addGifs(null, targets.get(), board);
+
+            } catch (ChampionDisarmedException disarm) {
+                exceptionMessage("Champion Disarmed!", disarm.getMessage());
+            } catch (NotEnoughResourcesException resource) {
+                exceptionMessage("Not Enough Resources!", resource.getMessage());
+            }
+        });
+
 
     }
 
@@ -1005,10 +1027,7 @@ public class Controller {
                     targets.set(mainFrame.game.getTargetsOfCastDir(ability, dir));
 
                     castAbilityDirectional(ability, dir);
-                    update();
 
-                    addGifs(ability,targets.get(), board);
-                    gameOver();
                 });
             } else {
                 onSingleTarget(ability);
@@ -1036,6 +1055,8 @@ public class Controller {
             ArrayList<Damageable> targets = mainFrame.game.getTargetsOfCastDir(ability, dir);
 
             mainFrame.game.castAbility(ability, dir);
+            update();
+
             addGifs(ability,targets , board);
 
         } catch (AbilityUseException abilityUseException) {
@@ -1069,7 +1090,6 @@ public class Controller {
 //                        addGifs(mainFrame.game.getTargetsOfCastSin(ability, finalI, finalJ));
 
                         update();
-                        gameOver();
 
                         addGifs(ability, targets, board);
 
@@ -1105,16 +1125,6 @@ public class Controller {
 
     public static void onEndTurn() {
         mainFrame.game.endTurn();
-
-        ArrayList<Champion> targets = new ArrayList<>();
-
-
-        if(mainFrame.game.getFirstPlayer().getTeam().contains(mainFrame.game.getCurrentChampion()))
-            targets = mainFrame.game.getSecondPlayer().getTeam();
-        else
-            targets = mainFrame.game.getFirstPlayer().getTeam();
-
-
         update();
     }
 

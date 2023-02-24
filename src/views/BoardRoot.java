@@ -424,7 +424,7 @@ public class BoardRoot extends StackPane {
 
         attackButton.setOnAction(e -> {
             onClick();
-            this.setOnKeyPressed(f -> onAttackButton(f.getCode()));
+            onAttackButton();
             actionInfo.getChildren().remove(abilities);
 
         });

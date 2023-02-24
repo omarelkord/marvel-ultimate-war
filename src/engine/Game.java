@@ -31,13 +31,7 @@ import model.effects.Shock;
 import model.effects.Silence;
 import model.effects.SpeedUp;
 import model.effects.Stun;
-import model.world.AntiHero;
-import model.world.Champion;
-import model.world.Cover;
-import model.world.Damageable;
-import model.world.Direction;
-import model.world.Hero;
-import model.world.Villain;
+import model.world.*;
 
 public class Game {
 	private static ArrayList<Champion> availableChampions = new ArrayList<>();
@@ -263,6 +257,65 @@ public class Game {
 		return false;
 	}
 
+	public void attack2(Direction dir) throws NotEnoughResourcesException, ChampionDisarmedException {
+
+		Champion c = this.getCurrentChampion();
+
+		for (Effect e : c.getAppliedEffects()) {
+			if (e instanceof Disarm)
+				throw new ChampionDisarmedException("Champion is disarmed!");
+		}
+
+		if (c.getCurrentActionPoints() < 2)
+			throw new NotEnoughResourcesException();
+
+		c.setCurrentActionPoints(c.getCurrentActionPoints() - 2);
+
+		Point pointChampion = c.getLocation();
+		ArrayList<Damageable> directionTargets = targetsInDirection(pointChampion, dir, c.getAttackRange());
+		ArrayList<Damageable> oppositeTeam = oppositeTeam(c);
+
+		Damageable target = null;
+		int dodge = 0;
+
+		// GET FIRST VALID TARGET IN DIRECTION WITHIN RANGE
+		for (Damageable d : directionTargets) {
+
+			if (d instanceof Cover || (d instanceof Champion && oppositeTeam.contains(d))) {
+				target = d;
+				break;
+			}
+		}
+
+		if (target != null) {
+			if (target instanceof Champion) {
+				for (Effect e : ((Champion) target).getAppliedEffects()) {
+
+					if (e instanceof Shield) {
+						((Champion) target).getAppliedEffects().remove(e);
+						e.remove((Champion) target);
+						return;
+					}
+
+					if (e instanceof Dodge)
+						dodge = (int) (Math.random() * 2);
+				}
+
+				if (dodge == 0) {
+					specialInteraction(c, (Champion) target);
+				}
+			}
+
+			else if (target instanceof Cover)
+				target.setCurrentHP(target.getCurrentHP() - c.getAttackDamage());
+
+			if (target.getCurrentHP() == 0)
+				removeDead(target);
+
+		}
+	}
+
+
 	public void attack(Direction d)
 			throws NotEnoughResourcesException, ChampionDisarmedException {
 		if (hasEffect(getCurrentChampion(), "Disarm"))
@@ -346,6 +399,7 @@ public class Game {
 
 		int currx = (int) getCurrentChampion().getLocation().getX();
 		int curry = (int) getCurrentChampion().getLocation().getY();
+
 		for (int i = 0; i < getCurrentChampion().getAttackRange(); i++) {
 			if (d == Direction.UP)
 				currx++;
@@ -355,23 +409,20 @@ public class Game {
 				curry--;
 			else if (d == Direction.RIGHT)
 				curry++;
-			if (currx < 0 || currx >= BOARDHEIGHT || curry < 0 || curry >= BOARDWIDTH)
+
+			if (currx < 0 || currx >= BOARDHEIGHT || curry < 0 || curry >= BOARDWIDTH) {
 				return null;
+			}
 
 			else if (board[currx][curry] != null) {
+
 				if (board[currx][curry] instanceof Cover) {
-					int curhp = ((Cover) board[currx][curry]).getCurrentHP();
-					curhp -= getCurrentChampion().getAttackDamage();
-					((Cover) board[currx][curry]).setCurrentHP(curhp);
-					if (curhp <= 0)
-						board[currx][curry] = null;
 
 					finalTarget.add((Damageable) board[currx][curry]);
-
 					return finalTarget;
+
 				} else if (board[currx][curry] instanceof Champion) {
 
-					int damage = getCurrentChampion().getAttackDamage();
 					Champion target = (Champion) board[currx][curry];
 
 					if (firstPlayer.getTeam().contains(getCurrentChampion()) && firstPlayer.getTeam().contains(target))
@@ -380,35 +431,24 @@ public class Game {
 							&& secondPlayer.getTeam().contains(target))
 						continue;
 
+
 					Champion curr = getCurrentChampion();
+
 					if (hasEffect(target, "Dodge")) {
 						int r = ((int) (Math.random() * 100)) + 1;
 						if (r <= 50) {
-							curr.setCurrentActionPoints(curr.getCurrentActionPoints() - 2);
+							return finalTarget;
 						}
 					}
 
 					if (hasEffect(target, "Shield")) {
 						for (Effect e : target.getAppliedEffects()) {
 							if (e.getName().equals("Shield")) {
-								e.remove(target);
-								target.getAppliedEffects().remove(e);
-								curr.setCurrentActionPoints(curr.getCurrentActionPoints() - 2);
 								return finalTarget;
 							}
 						}
 					}
 
-					else if ((curr instanceof Hero && !(target instanceof Hero))
-							|| (curr instanceof Villain && !(target instanceof Villain))
-							|| (curr instanceof AntiHero && !(target instanceof AntiHero)))
-						damage = (int) (damage * 1.5);
-
-					target.setCurrentHP(target.getCurrentHP() - damage);
-					curr.setCurrentActionPoints(curr.getCurrentActionPoints() - 2);
-					ArrayList<Damageable> targets = new ArrayList<Damageable>();
-					targets.add(target);
-					cleanup(targets);
 
 					finalTarget.add(target);
 					return finalTarget;
@@ -976,6 +1016,107 @@ public class Game {
 		return firstPlayer.getTeam().contains(getCurrentChampion()) && secondPlayer.getTeam().contains(c) ||
 				secondPlayer.getTeam().contains(getCurrentChampion()) && firstPlayer.getTeam().contains(c);
 	}
+
+	public ArrayList<Damageable> oppositeTeam(Champion c) {
+
+		Player p1 = this.firstPlayer;
+		Player p2 = this.secondPlayer;
+		ArrayList<Damageable> result = new ArrayList<Damageable>();
+		if (p1.getTeam().contains(c))
+			result.addAll(p2.getTeam());
+		else
+			result.addAll(p1.getTeam());
+
+		return result;
+	}
+
+	public static Point modifiedpoint(Point p, Direction dir) {
+		if (dir == Direction.UP)
+			p.x++;
+		else if (dir == Direction.DOWN)
+			p.x--;
+		else if (dir == Direction.RIGHT)
+			p.y++;
+		else
+			p.y--;
+		return p;
+	}
+
+	public ArrayList<Damageable> targetsInDirection(Point p, Direction dir, int range) {
+		ArrayList<Damageable> targetsInDirection = new ArrayList<Damageable>();
+
+		Point cloned = new Point(p.x, p.y);
+		Point point = modifiedpoint(cloned, dir);
+
+		int i = 0;
+
+		while (point.x >= 0 && point.x < BOARDWIDTH && point.y >= 0 && point.y < BOARDHEIGHT && i < range) {
+
+			Damageable d = (Damageable) this.board[point.x][point.y];
+
+			if (d != null) {
+				targetsInDirection.add(d);
+			}
+
+			if (dir == Direction.UP)
+				point.x++;
+			else if (dir == Direction.DOWN)
+				point.x--;
+
+			else if (dir == Direction.RIGHT)
+				point.y++;
+
+			else
+				point.y--;
+
+			i++;
+		}
+
+		return targetsInDirection;
+	}
+
+	public void specialInteraction(Champion current, Champion target) {
+
+		boolean notSpecial = ((current instanceof Hero && target instanceof Hero)
+				|| (current instanceof Villain && target instanceof Villain)
+				|| (current instanceof AntiHero && target instanceof AntiHero));
+
+		if (notSpecial)
+			target.setCurrentHP(target.getCurrentHP() - current.getAttackDamage());
+
+		else
+			target.setCurrentHP(target.getCurrentHP() - (int) (1.5 * current.getAttackDamage()));
+	}
+	public boolean inFirstTeam(Champion c) {
+		return firstPlayer.getTeam().contains(c);
+	}
+
+	public void removeDead(Damageable d) {
+		Point p = d.getLocation();
+		this.board[p.x][p.y] = null;
+		if (d instanceof Champion) {
+			Champion champion = (Champion) d;
+			champion.setCondition(Condition.KNOCKEDOUT);
+			if (inFirstTeam(champion))
+				firstPlayer.getTeam().remove(champion);
+			else
+				secondPlayer.getTeam().remove(champion);
+			removeFromQueue(champion);
+
+		}
+	}
+
+	public void removeFromQueue(Champion c) {
+		ArrayList<Champion> a = new ArrayList<Champion>();
+		while (!turnOrder.isEmpty())
+			a.add((Champion) turnOrder.remove());
+		a.remove(c);
+		for (Champion d : a) {
+			turnOrder.insert(d);
+		}
+
+	}
+
 
 
 	public static ArrayList<Champion> getAvailableChampions() {
