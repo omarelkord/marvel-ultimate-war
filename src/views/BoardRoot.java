@@ -480,10 +480,12 @@ public class BoardRoot extends StackPane {
         actions.setSpacing(10);
 
         Label firstPlayerName = new Label(game.getFirstPlayer().getName() + "'s Team");
-        firstPlayerName.setStyle("-fx-font: normal bold 14 Langdon;" + "-fx-text-fill: white;");
+        firstPlayerName.getStylesheets().add(getClass().getResource("css/game-font.css").toExternalForm());
+        firstPlayerName.getStyleClass().add("players-"+ mapChosen);
 
         Label secondPlayerName = new Label(game.getSecondPlayer().getName() + "'s Team");
-        secondPlayerName.setStyle("-fx-font: normal bold 14 Langdon;" + "-fx-text-fill: white;");
+        secondPlayerName.getStylesheets().add(getClass().getResource("css/game-font.css").toExternalForm());
+        secondPlayerName.getStyleClass().add("players-"+mapChosen);
 
         firstTeam.getChildren().add(firstPlayerName);
         secondTeam.getChildren().add(secondPlayerName);

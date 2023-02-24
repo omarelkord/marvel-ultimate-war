@@ -144,5 +144,23 @@ src: url("../fonts/NoiseGear.otf");
 
 }
 
+.players-forest {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 15px;
+-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, .5), 5, 0.2, 0.0, 0.0);
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #a7a7a7 100%);
+
+
+}
+
+.players-snow {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 15px;
+-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.2, 0.0, 0.0);
+-fx-text-fill: linear-gradient( #000000 20%, #757575 100%);
+
+
+}
+
 
 
