@@ -391,9 +391,6 @@ public class BoardRoot extends StackPane {
 
 
 
-
-
-
         actions = new HBox();
 //        actions.setPrefHeight(150);
 //        actions.setStyle("-fx-background-color: #ADD8E6");
@@ -411,7 +408,7 @@ public class BoardRoot extends StackPane {
 //        firstTeam.setStyle("-fx-background-color: #ADD8E6");
 
         Button moveButton = new Button();
-        moveButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
+        moveButton.getStylesheets().add(this.getClass().getResource("css/"+mapChosen+"-action-buttons.css").toExternalForm());
         moveButton.getStyleClass().add("move");
 
         moveButton.setOnAction(e -> {
@@ -422,7 +419,7 @@ public class BoardRoot extends StackPane {
         });
 
         Button attackButton = new Button();
-        attackButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
+        attackButton.getStylesheets().add(this.getClass().getResource("css/"+mapChosen+"-action-buttons.css").toExternalForm());
         attackButton.getStyleClass().add("attack");
 
         attackButton.setOnAction(e -> {
@@ -443,18 +440,8 @@ public class BoardRoot extends StackPane {
         });
 
 
-        Button castButton = new Button();
-        castButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
-        castButton.getStyleClass().add("cast");
-
-        castButton.setOnAction(e -> {
-            onClick();
-//            secondStackpane.setEffect(darknessEffect);
-//            addAbilitiesByButtons();
-        });
-
         Button endTurnButton = new Button();
-        endTurnButton.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
+        endTurnButton.getStylesheets().add(this.getClass().getResource("css/"+mapChosen+"-action-buttons.css").toExternalForm());
         endTurnButton.getStyleClass().add("end");
 
         endTurnButton.setOnAction(e -> {
@@ -465,7 +452,7 @@ public class BoardRoot extends StackPane {
 
 
         leaderAbility = new Button();
-        leaderAbility.getStylesheets().add(this.getClass().getResource("css/action-buttons.css").toExternalForm());
+        leaderAbility.getStylesheets().add(this.getClass().getResource("css/"+mapChosen+"-action-buttons.css").toExternalForm());
         leaderAbility.getStyleClass().add("leader");
 
         leaderAbility.setOnAction(e -> onLeaderAbility());
@@ -482,13 +469,16 @@ public class BoardRoot extends StackPane {
 
 
         actions.setAlignment(Pos.CENTER);
-        actions.getChildren().addAll(moveButton, attackButton, castButton, endTurnButton, leaderAbility);
+        actions.getChildren().addAll(moveButton, attackButton, endTurnButton, leaderAbility);
+        actions.setSpacing(10);
 
         Label firstPlayerName = new Label(game.getFirstPlayer().getName() + "'s Team");
-        firstPlayerName.setStyle("-fx-font: normal bold 14 Langdon;" + "-fx-text-fill: white;");
+        firstPlayerName.getStylesheets().add(getClass().getResource("css/game-font.css").toExternalForm());
+        firstPlayerName.getStyleClass().add("players-"+ mapChosen);
 
         Label secondPlayerName = new Label(game.getSecondPlayer().getName() + "'s Team");
-        secondPlayerName.setStyle("-fx-font: normal bold 14 Langdon;" + "-fx-text-fill: white;");
+        secondPlayerName.getStylesheets().add(getClass().getResource("css/game-font.css").toExternalForm());
+        secondPlayerName.getStyleClass().add("players-"+mapChosen);
 
         firstTeam.getChildren().add(firstPlayerName);
         secondTeam.getChildren().add(secondPlayerName);

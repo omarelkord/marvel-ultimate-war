@@ -37,7 +37,7 @@ public class MapSelectionRoot extends StackPane {
 
         BoardRoot forestMapPreview = new BoardRoot(game, "forest");
         BoardRoot snowMapPreview = new BoardRoot(game, "snow");
-        BoardRoot galaxyMapPreview = new BoardRoot(game, "galaxy");
+        //BoardRoot galaxyMapPreview = new BoardRoot(game, "galaxy");
 
         container = new VBox(10);
         container.setAlignment(Pos.CENTER);

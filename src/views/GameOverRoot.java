@@ -36,7 +36,6 @@ public class GameOverRoot extends VBox {
             champBtn.getStyleClass().add(c.getName().substring(0,2));
             team.getChildren().add(champBtn);
         }
-
         Button playAgain = new Button();
         playAgain.getStylesheets().add(this.getClass().getResource("css/replay-btn.css").toExternalForm());
 
@@ -52,10 +51,12 @@ public class GameOverRoot extends VBox {
             fadeOut(this, mainFrame1.startingRoot);
 
         });
+//        Button playAgain = new Button("PLAY AGAIN");
+//        playAgain.setOnAction(e-> fadeOut(mainFrame.gameOverRoot, mainFrame.startingRoot ));
 
         this.setAlignment(Pos.CENTER);
         this.setSpacing(100);
-        this.getChildren().addAll(label,team , playAgain);
+        this.getChildren().addAll(label,team);
 
     }
 }

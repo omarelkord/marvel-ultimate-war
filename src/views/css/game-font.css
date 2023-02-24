@@ -14,6 +14,13 @@ src: url("../fonts/Warungasem-rgO1O.ttf");
 src: url("../fonts/VerminVibesV-Zlg3.ttf");
 }
 
+@font-face {
+src: url("../fonts/Enfonix-DEMO.otf");
+}
+@font-face {
+src: url("../fonts/NoiseGear.otf");
+}
+
 .red{
     -fx-text-fill:
     linear-gradient(#E44E4F 20%, #AF1B1B 100%),
@@ -86,14 +93,14 @@ src: url("../fonts/VerminVibesV-Zlg3.ttf");
 .leader-font {
 -fx-font-family: 'Bruce Forever Regular';
 -fx-font-size: 30px;
--fx-text-fill: linear-gradient( #E8E2E2 20%, #010100 100%);
+    -fx-text-fill: linear-gradient( #E8E2E2 20%, #a7a7a7 100%);
 
 }
 
 .select-leader-font {
 -fx-font-family: 'Bruce Forever Regular';
 -fx-font-size: 14px;
--fx-text-fill: linear-gradient( #E8E2E2 20%, #010100 100%);
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #a7a7a7 100%);
 
 }
 
@@ -131,5 +138,38 @@ src: url("../fonts/VerminVibesV-Zlg3.ttf");
 -fx-font-family: 'Bruce Forever Regular';
 -fx-font-size: 24px;
 -fx-text-fill: linear-gradient( #E8E2E2 20%, #646464 100%);
+
+}
+.instruction-title {
+-fx-font-family: 'Noise Gear';
+-fx-font-size: 70px;
+-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, .7), 10, 0.2, 0.0, 0.0);
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #010100 100%);
+
+
+}
+
+.instructions {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 12px;
+-fx-text-fill: #FFFFFF;
+
+}
+
+.players-forest {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 15px;
+-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, .5), 5, 0.2, 0.0, 0.0);
+-fx-text-fill: linear-gradient( #E8E2E2 20%, #a7a7a7 100%);
+
+
+}
+
+.players-snow {
+-fx-font-family: 'Bruce Forever Regular';
+-fx-font-size: 15px;
+-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 5, 0.2, 0.0, 0.0);
+-fx-text-fill: linear-gradient( #000000 20%, #757575 100%);
+
 
 }

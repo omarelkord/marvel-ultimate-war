@@ -68,7 +68,6 @@ public class Controller {
         initializePlayers();
         try {
             mainFrame.selectionRoot = new SelectionRoot();
-            mainFrame.selectionRoot.selectionLabel.setText(mainFrame.firstPlayer.getName() + ", select three champions!");
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
@@ -144,20 +143,14 @@ public class Controller {
 
     public static void onSelectButton(int i) {
         ArrayList<Champion> availableChampions = getAvailableChampions();
-        if (mainFrame.firstPlayer.getTeam().size() < 3)
+        if (mainFrame.firstPlayer.getTeam().size() < 3) {
             mainFrame.firstPlayer.getTeam().add(availableChampions.get(i));
+            if(mainFrame.firstPlayer.getTeam().size()==3)
+                selectionPopup(mainFrame.secondPlayer.getName(),mainFrame.selectionRoot);
+        }
         else if (mainFrame.secondPlayer.getTeam().size() < 3)
             mainFrame.secondPlayer.getTeam().add(availableChampions.get(i));
 
-//        if (mainFrame.firstPlayer.getTeam().size() == 3) {
-//            mainFrame.selectionRoot.hboxStats.getChildren().clear();
-//            mainFrame.selectionRoot.selectionLabel.setText(mainFrame.secondPlayer.getName() + ", select 3 champions!");
-//            mainFrame.selectionRoot.hboxStats.getChildren().add(mainFrame.selectionRoot.selectionLabel);
-//        }
-
-        if(mainFrame.firstPlayer.getTeam().size()==3){
-            //add popup saying second player select your team
-        }
         if (mainFrame.secondPlayer.getTeam().size() == 3) {
             onSwitchToLeader();
         }
@@ -190,7 +183,7 @@ public class Controller {
 //        mainFrame.game = new Game(mainFrame.firstPlayer, mainFrame.secondPlayer);
         mainFrame.mapSelectionRoot = new MapSelectionRoot(mainFrame.game);
 
-        fadeOut(mainFrame.leaderRoot, mainFrame.mapSelectionRoot);
+        fadeOut(mainFrame.instructionsRoot, mainFrame.mapSelectionRoot);
     }
 
 
@@ -267,7 +260,14 @@ public class Controller {
         }
 
         if (mainFrame.firstPlayer.getLeader() != null && mainFrame.secondPlayer.getLeader() != null)
-            onSwitchToMap();
+            onSwitchToInstructions();
+
+    }
+
+    public static void onSwitchToInstructions() {
+
+        mainFrame.instructionsRoot = new InstructionsRoot(20);
+        fadeOut(mainFrame.leaderRoot, mainFrame.instructionsRoot);
     }
 
     //    public Hero(String name (0) , int maxHP (1) , int maxMana (2) , int actions (3), int speed (4) , int attackRange (5) , int attackDamage (6)) {
@@ -813,7 +813,7 @@ public class Controller {
 
         ImageView blackImg = mainFrame.boardRoot.blackImg;
 //        ImageView alertBox = new ImageView(new Image("views/popup_imgs/alert4.png"));
-        StackPane stackPane = new MyAlert(header, content);
+        StackPane stackPane = new MyAlert(header, content, "alert7");
 
         mainFrame.boardRoot.getChildren().add(blackImg);
         mainFrame.boardRoot.getChildren().add(stackPane);
@@ -850,13 +850,14 @@ public class Controller {
     }
 
 
-    public static void selectionPopup(String playerName){
+    public static void selectionPopup(String playerName, SelectionRoot root){
 
         ImageView blackImg = new ImageView(new Image("views/gen_imgs/black-img.png"));
-        StackPane stackPane = new MyAlert("Alert", playerName + "choose three champions for your team");
+        StackPane stackPane = new MyAlert("Alert", playerName + ", choose three champions for your team", "alert6");
 
-        mainFrame.selectionRoot.getChildren().add(blackImg);
-        mainFrame.selectionRoot.getChildren().add(stackPane);
+
+        root.getChildren().add(blackImg);
+        root.getChildren().add(stackPane);
 
         FadeTransition fadeTransition1 = new FadeTransition(Duration.millis(500), blackImg);
         fadeTransition1.setFromValue(0);
@@ -956,7 +957,6 @@ public class Controller {
             mainFrame.game.attack(dir);
             update();
             gameOver();
-
             addGifs(null, targets, board);
 
 
@@ -994,8 +994,8 @@ public class Controller {
 
                 mainFrame.game.castAbility(ability);
                 update();
-
                 addGifs(ability, targets.get(), board);
+                gameOver();
 
             } else if (castArea == AreaOfEffect.DIRECTIONAL) {
                 mainFrame.boardRoot.setOnKeyPressed(f -> {
@@ -1012,6 +1012,7 @@ public class Controller {
                 });
             } else {
                 onSingleTarget(ability);
+
 
 
             }

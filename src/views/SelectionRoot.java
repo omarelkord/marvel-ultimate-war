@@ -2,6 +2,9 @@ package views;
 
 import engine.Game;
 import engine.Player;
+import javafx.animation.FadeTransition;
+import javafx.animation.PauseTransition;
+import javafx.animation.SequentialTransition;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
@@ -10,6 +13,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
 import model.world.Champion;
 
 import java.io.IOException;
@@ -118,6 +122,6 @@ public class SelectionRoot extends StackPane {
         selectionRootVbox.getChildren().add(scrollPane);
 
         this.getChildren().add(selectionRootVbox);
-
+        Controller.selectionPopup(mainFrame.firstPlayer.getName(), this);
     }
 }
