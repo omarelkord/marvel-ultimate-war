@@ -33,12 +33,12 @@ public class GameOverRoot extends VBox {
             team.getChildren().add(champBtn);
         }
 
-        Button playAgain = new Button("PLAY AGAIN");
-        playAgain.setOnAction(e-> fadeOut(mainFrame.gameOverRoot, mainFrame.startingRoot ));
+//        Button playAgain = new Button("PLAY AGAIN");
+//        playAgain.setOnAction(e-> fadeOut(mainFrame.gameOverRoot, mainFrame.startingRoot ));
 
         this.setAlignment(Pos.CENTER);
         this.setSpacing(100);
-        this.getChildren().addAll(label,team , playAgain);
+        this.getChildren().addAll(label,team);
 
     }
 }
