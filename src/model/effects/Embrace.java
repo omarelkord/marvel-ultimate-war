@@ -16,9 +16,10 @@ public class Embrace extends Effect {
 
 		c.setSpeed((int) (c.getSpeed() * 1.2));
 		c.setAttackDamage((int) (c.getAttackDamage() * 1.2));
+		
+		c.setMaxHp((int)(c.getMaxHP() * 1.2));
+		c.setMaxMana((int)(c.getMaxMana() * 1.2));
 
-//		c.setMaxHp((int) (c.getMaxHP() * 0.2) + c.getMaxHP());
-//		c.setMaxMana((int)(c.getMaxMana() * 1.2));
 		c.setMaxSpeed((int)(c.getMaxSpeed() * 1.2));
 		c.setMaxAttackDamage((int)(c.getMaxAttackDamage() * 1.2));
 
