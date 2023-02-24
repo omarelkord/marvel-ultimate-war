@@ -210,9 +210,9 @@ public class Controller {
             Champion c = mainFrame.game.getFirstPlayer().getTeam().get(i);
 
             if (c instanceof Hero)
-                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbility2.png');");
+                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbilityTrial.png');");
             else if (c instanceof Villain)
-                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbility2.png');");
+                mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbilityTrial.png');");
             else
                 mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbility2.png');");
 
@@ -226,6 +226,16 @@ public class Controller {
             else
                 mainFrame.leaderRoot.leaderAbilityBox.setStyle("-fx-background-image: url('views/gen_imgs/leaderAbility2.png');");
         }
+    }
+
+
+    public static String getChampionType(Champion c){
+        if(c instanceof Hero)
+            return "hero";
+        else if(c instanceof AntiHero)
+            return "antihero";
+        else
+            return "villain";
     }
 
 
@@ -1094,6 +1104,16 @@ public class Controller {
 
     public static void onEndTurn() {
         mainFrame.game.endTurn();
+
+        ArrayList<Champion> targets = new ArrayList<>();
+
+
+        if(mainFrame.game.getFirstPlayer().getTeam().contains(mainFrame.game.getCurrentChampion()))
+            targets = mainFrame.game.getSecondPlayer().getTeam();
+        else
+            targets = mainFrame.game.getFirstPlayer().getTeam();
+
+        targets.clear();
         update();
     }
 
@@ -1120,14 +1140,14 @@ public class Controller {
 //
 //    }
 
-    public static String getChampType(Champion c) {
-        if (c instanceof Hero)
-            return "Hero";
-        else if (c instanceof Villain)
-            return "Villain";
-        else
-            return "Antihero";
-    }
+//    public static String getChampType(Champion c) {
+//        if (c instanceof Hero)
+//            return "Hero";
+//        else if (c instanceof Villain)
+//            return "Villain";
+//        else
+//            return "Antihero";
+//    }
 
 //    public static HBox getStats(Champion c) {
 //
@@ -1316,35 +1336,35 @@ public class Controller {
         if(mainFrame.game.getFirstPlayer().getTeam().contains(c)){
 
             double progress = (double) c.getCurrentHP()/c.getMaxHP();
-            mainFrame.boardRoot.firstPlayerBar1.getStyleClass().clear();
+//            mainFrame.boardRoot.firstPlayerBar1.getStyleClass().clear();
 
             Label firstHPLabel = mainFrame.boardRoot.firstHPLabel;
 
-            firstHPLabel.getStyleClass().clear();
-            firstHPLabel.getStylesheets().clear();
-            
-            if (progress < 0.2) {
-                setBarStyleClass(mainFrame.boardRoot.firstPlayerBar1, RED_BAR);
-
-
-
-                firstHPLabel.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/game-font.css").toExternalForm());
-                firstHPLabel.getStyleClass().add("red");
-
-
-            } else if (progress < 0.4) {
-                setBarStyleClass(mainFrame.boardRoot.firstPlayerBar1, ORANGE_BAR);
-
-                firstHPLabel.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/game-font.css").toExternalForm());
-                firstHPLabel.getStyleClass().add("orange");
-
-            } else {
-                setBarStyleClass(mainFrame.boardRoot.firstPlayerBar1, GREEN_BAR);
-
-                firstHPLabel.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/game-font.css").toExternalForm());
-                firstHPLabel.getStyleClass().add("green");
-
-            }
+//            firstHPLabel.getStyleClass().clear();
+//            firstHPLabel.getStylesheets().clear();
+//
+//            if (progress < 0.2) {
+//                setBarStyleClass(mainFrame.boardRoot.firstPlayerBar1, RED_BAR);
+//
+//
+//
+//                firstHPLabel.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/game-font.css").toExternalForm());
+//                firstHPLabel.getStyleClass().add("red");
+//
+//
+//            } else if (progress < 0.4) {
+//                setBarStyleClass(mainFrame.boardRoot.firstPlayerBar1, ORANGE_BAR);
+//
+//                firstHPLabel.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/game-font.css").toExternalForm());
+//                firstHPLabel.getStyleClass().add("orange");
+//
+//            } else {
+//                setBarStyleClass(mainFrame.boardRoot.firstPlayerBar1, GREEN_BAR);
+//
+//                firstHPLabel.getStylesheets().add(mainFrame.boardRoot.getClass().getResource("css/game-font.css").toExternalForm());
+//                firstHPLabel.getStyleClass().add("green");
+//
+//            }
 
             mainFrame.boardRoot.firstPlayerIcon.getStyleClass().clear();
             mainFrame.boardRoot.firstPlayerIcon.getStyleClass().add(c.getName().substring(0, 2));
@@ -1363,13 +1383,13 @@ public class Controller {
 
             double progress = (double) c.getCurrentHP()/c.getMaxHP();
 
-            if (progress < 0.2) {
-                setBarStyleClass(mainFrame.boardRoot.secondPlayerBar1, RED_BAR);
-            } else if (progress < 0.4) {
-                setBarStyleClass(mainFrame.boardRoot.secondPlayerBar1, ORANGE_BAR);
-            } else {
-                setBarStyleClass(mainFrame.boardRoot.secondPlayerBar1, GREEN_BAR);
-            }
+//            if (progress < 0.2) {
+//                setBarStyleClass(mainFrame.boardRoot.secondPlayerBar1, RED_BAR);
+//            } else if (progress < 0.4) {
+//                setBarStyleClass(mainFrame.boardRoot.secondPlayerBar1, ORANGE_BAR);
+//            } else {
+//                setBarStyleClass(mainFrame.boardRoot.secondPlayerBar1, GREEN_BAR);
+//            }
 
             mainFrame.boardRoot.secondPlayerIcon.getStyleClass().clear();
             mainFrame.boardRoot.secondPlayerIcon.getStyleClass().add(c.getName().substring(0, 2));

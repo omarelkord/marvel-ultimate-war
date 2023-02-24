@@ -47,6 +47,7 @@ public class SelectionRoot extends StackPane {
         selectionRootVbox = new VBox();
 
         firstClick = true;
+
         select = new Button();
         select.setPrefSize(100, 30);
         select.getStylesheets().add(this.getClass().getResource("css/select-back-btns.css").toExternalForm());
@@ -60,6 +61,7 @@ public class SelectionRoot extends StackPane {
         selectionRootVbox.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
 
         championButtons = new HBox(-110);
+        championButtons.getChildren().clear();
 
         selectionRootVbox.setAlignment(Pos.BOTTOM_CENTER);
 
@@ -84,6 +86,7 @@ public class SelectionRoot extends StackPane {
         int i = 0;
 
 
+
         for (Champion c : availableChampions) {
 
             Button button = new Button();
@@ -93,7 +96,10 @@ public class SelectionRoot extends StackPane {
             button.setOnAction(e -> onStatsButton(finalI));
             button.getStylesheets().add(this.getClass().getResource("css/selection-btns.css").toExternalForm());
             button.getStyleClass().add(c.getName().substring(0, 2));
-            championButtons.getChildren().add(button);
+
+            if(championButtons.getChildren().size() < 15)
+                championButtons.getChildren().add(button);
+
             i++;
         }
 
@@ -107,6 +113,7 @@ public class SelectionRoot extends StackPane {
         hboxStats.setLeft(vboxBack);
         hboxStats.setRight(vboxSelect);
 
+        scrollPane.setContent(null);
         scrollPane.setContent(championButtons);
         selectionRootVbox.getChildren().add(scrollPane);
 

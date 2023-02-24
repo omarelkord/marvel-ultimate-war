@@ -4,7 +4,10 @@ import engine.Game;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import model.world.Champion;
@@ -16,7 +19,7 @@ import static views.Controller.*;
 public class LeaderRoot extends VBox {
     HBox firstTeam;
     HBox secondTeam;
-    HBox leaderAbilityBox;
+    StackPane leaderAbilityBox;
     ArrayList<Button> firstTeamButtons = new ArrayList<>();
     ArrayList<Button> secondTeamButtons = new ArrayList<>();
 
@@ -25,16 +28,17 @@ public class LeaderRoot extends VBox {
     public LeaderRoot(Game game, double v) {
 
         super(v);
+
         this.setAlignment(Pos.BOTTOM_CENTER);
-        this.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
+        this.setStyle("-fx-background-image: url('views/bg_imgs/LeaderBG.png');");
 
         firstTeam = new HBox();
         firstTeam.setAlignment(Pos.CENTER);
         secondTeam = new HBox();
         secondTeam.setAlignment(Pos.CENTER);
 
-        leaderAbilityBox = new HBox();
-        leaderAbilityBox.setPrefHeight(100);
+        leaderAbilityBox = new StackPane();
+        leaderAbilityBox.setPrefHeight(110);
 
 
         int i = 0;
@@ -47,8 +51,8 @@ public class LeaderRoot extends VBox {
 
             int finalI = i;
 
-            button.setOnMouseEntered(e -> onLeaderHover(true, finalI));
-            button.setOnMouseExited(e -> leaderAbilityBox.setStyle("-fx-background-color: transparent;"));
+            button.setOnMouseEntered(e -> leaderAbilityBox.getChildren().add(new ImageView(new Image("views/gen_imgs/" + getChampionType(c)  + "Ability.png"))));
+            button.setOnMouseExited(e -> leaderAbilityBox.getChildren().clear());
 
             firstTeam.getChildren().add(button);
             firstTeamButtons.add(button);
@@ -67,9 +71,8 @@ public class LeaderRoot extends VBox {
 
             int finalI = i;
 
-            button.setOnMouseEntered(e -> onLeaderHover(false, finalI));
-            button.setOnMouseExited(e -> leaderAbilityBox.setStyle("-fx-background-color: transparent;"));
-
+            button.setOnMouseEntered(e -> leaderAbilityBox.getChildren().add(new ImageView(new Image("views/gen_imgs/" + getChampionType(c)  + "Ability.png"))));
+            button.setOnMouseExited(e -> leaderAbilityBox.getChildren().clear());
 
             secondTeam.getChildren().add(button);
             secondTeamButtons.add(button);
