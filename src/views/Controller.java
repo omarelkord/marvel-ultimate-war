@@ -1114,7 +1114,7 @@ public class Controller {
         else
             targets = mainFrame.game.getFirstPlayer().getTeam();
 
-        targets.clear();
+
         update();
     }
 
