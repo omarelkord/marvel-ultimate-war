@@ -18,8 +18,7 @@ public class InstructionsRoot extends StackPane {
 
         VBox root = new VBox(-10);
 
-        //this.setStyle("-fx-background-image: url('views/bg_imgs/selectionBG.png');");
-        this.setStyle("-fx-background-image: url('views/bg_imgs/mapBG3.png');");
+        this.setStyle("-fx-background-image: url('views/bg_imgs/mapBG.png');");
         root.setAlignment(Pos.CENTER);
 
         Label title = new Label("GAME RULES");

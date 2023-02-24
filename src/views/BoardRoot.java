@@ -119,10 +119,6 @@ public class BoardRoot extends StackPane {
         turnOrder.setPrefSize(2000, 150);
         turnOrder.setAlignment(Pos.CENTER);
 
-//        turnOrder.setBackground(new Background(new BackgroundFill(Color.FIREBRICK, CornerRadii.EMPTY, Insets.EMPTY)));
-
-//        turnOrder.setStyle("-fx-background-color: #ADD8E6");
-//
 
 
         Champion firstChampion = null;

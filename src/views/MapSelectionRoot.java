@@ -1,7 +1,6 @@
 package views;
 
 import engine.Game;
-import javafx.animation.FadeTransition;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,7 +10,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import model.world.Champion;
 import model.world.Cover;
 
@@ -23,7 +21,6 @@ public class MapSelectionRoot extends StackPane {
     Label promptLabel;
     Button forestButton;
     Button snowButton;
-    Button galaxyButton;
     Button fightButton;
     String mapChosen;
 
@@ -33,11 +30,10 @@ public class MapSelectionRoot extends StackPane {
         super();
 
         ImageView blackImg = new ImageView(new Image("views/gen_imgs/black-img.png"));
-        ImageView alertImg = new ImageView(new Image("views/gen_imgs/alert11.png"));
+        ImageView alertImg = new ImageView(new Image("views/gen_imgs/map-alert.png"));
 
         BoardRoot forestMapPreview = new BoardRoot(game, "forest");
         BoardRoot snowMapPreview = new BoardRoot(game, "snow");
-        //BoardRoot galaxyMapPreview = new BoardRoot(game, "galaxy");
 
         container = new VBox(10);
         container.setAlignment(Pos.CENTER);
@@ -84,26 +80,9 @@ public class MapSelectionRoot extends StackPane {
         snowButton.getStyleClass().add("snow");
 
 
-
-//        snowButton = new Button();
-//        snowButton.setOnAction(e -> onSwitchToBoard("snow"));
-//        snowButton.setOnMouseEntered(e -> this.setStyle("-fx-background-image: url('views/bg_imgs/avengersSnow.jpg');"));
-//        snowButton.setOnMouseExited(e -> this.setStyle("-fx-background-color: #11554A;"));
-//        snowButton.getStylesheets().add(this.getClass().getResource("css/map-btns.css").toExternalForm());
-//        snowButton.getStyleClass().add("snow");
-
-
-        galaxyButton = new Button();
-        galaxyButton.setOnAction(e -> onSwitchToBoard("galaxy"));
-//        galaxyButton.setOnMouseEntered(e -> this.setStyle("-fx-background-image: url('views/galaxyGIF2.gif');"));
-//        galaxyButton.setOnMouseExited(e -> this.setStyle("-fx-background-color: #11554A;"));
-        galaxyButton.getStylesheets().add(this.getClass().getResource("css/map-btns.css").toExternalForm());
-        galaxyButton.getStyleClass().add("galaxy");
-
-
         mapButtons = new HBox(10);
         mapButtons.setAlignment(Pos.CENTER);
-        mapButtons.getChildren().addAll(forestButton, snowButton, galaxyButton);
+        mapButtons.getChildren().addAll(forestButton, snowButton);
 
         promptLabel = new Label("SELECT A MAP TO FIGHT!");
         promptLabel.getStylesheets().add(this.getClass().getResource("css/game-font.css").toExternalForm());
@@ -111,7 +90,7 @@ public class MapSelectionRoot extends StackPane {
 //        promptLabel.setStyle("-fx-font: normal bold 30 Langdon;" + "-fx-text-fill: white;");
 
         container.getChildren().addAll(promptLabel, mapButtons);
-        this.setStyle("-fx-background-image: url('views/bg_imgs/mapBG3.png');");
+        this.setStyle("-fx-background-image: url('views/bg_imgs/mapBG.png');");
 
     }
 
@@ -121,7 +100,7 @@ public class MapSelectionRoot extends StackPane {
 
         GridPane gridPane = new GridPane();
 
-        gridPane.setStyle("-fx-background-image: url('views/bg_imgs/" + mapChosen + "Map2.png');");
+        gridPane.setStyle("-fx-background-image: url('views/bg_imgs/" + mapChosen + "Map.png');");
 
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 5; j++) {
