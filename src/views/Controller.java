@@ -1126,16 +1126,6 @@ public class Controller {
     public static void onEndTurn() {
         mainFrame.game.endTurn();
 
-//        ArrayList<Champion> targets = new ArrayList<>();
-//
-//
-//        if(mainFrame.game.getFirstPlayer().getTeam().contains(mainFrame.game.getCurrentChampion()))
-//            targets = mainFrame.game.getSecondPlayer().getTeam();
-//        else
-//            targets = mainFrame.game.getFirstPlayer().getTeam();
-//
-//        targets.clear();
-        
         update();
     }
 
