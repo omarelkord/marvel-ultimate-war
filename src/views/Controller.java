@@ -1135,6 +1135,7 @@ public class Controller {
 //            targets = mainFrame.game.getFirstPlayer().getTeam();
 //
 //        targets.clear();
+        
         update();
     }
 
