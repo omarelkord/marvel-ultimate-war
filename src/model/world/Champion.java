@@ -180,6 +180,26 @@ public abstract class Champion implements Damageable, Comparable {
         return maxSpeed;
     }
 
+    public void setMaxHp(int maxHp){
+        this.maxHP = maxHp;
+    }
+
+    public void setMaxMana(int maxMana){
+        this.maxMana = maxMana;
+    }
+
+    public void setMaxAttackRange(int maxAttackRange){
+        this.maxAttackRange = maxAttackRange;
+    }
+
+    public void setMaxAttackDamage(int maxAttackDamage){
+        this.maxAttackDamage = maxAttackDamage;
+    }
+
+    public void setMaxSpeed(int maxSpeed){
+        this.maxSpeed = maxSpeed;
+    }
+
 
     public abstract void useLeaderAbility(ArrayList<Champion> targets);
 }

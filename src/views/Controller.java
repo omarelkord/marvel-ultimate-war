@@ -890,6 +890,7 @@ public class Controller {
 
             gameOver();
 
+
         } catch (ChampionDisarmedException disarm) {
             exceptionMessage("Champion Disarmed!", disarm.getMessage());
         } catch (NotEnoughResourcesException resource) {
@@ -908,6 +909,7 @@ public class Controller {
                 mainFrame.game.castAbility(ability);
                 update();
                 addGifs(ability, mainFrame.game.getTargetsOfCast(ability));
+                gameOver();
 
             } else if (castArea == AreaOfEffect.DIRECTIONAL) {
                 mainFrame.boardRoot.setOnKeyPressed(f -> {
@@ -922,6 +924,7 @@ public class Controller {
                 });
             } else {
                 onSingleTarget(ability);
+
 
 
             }
@@ -1002,6 +1005,7 @@ public class Controller {
         updateAbilities();
         updateSideIcons();
         disableInactiveBars();
+
     }
 
     public static void onEndTurn() {
