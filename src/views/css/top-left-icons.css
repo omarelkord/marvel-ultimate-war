@@ -192,17 +192,17 @@
 
 .Ve{
    -fx-background-color: transparent;
-   -fx-graphic: url('../top_imgs/venom-top-icon.png');
+   -fx-graphic: url('../top_imgs/left/venom-top-icon.png');
    -fx-cursor: hand;
 }
 .Ve:hover {
    -fx-background-color: transparent;
-   -fx-graphic: url('../top_imgs/venom-top-icon-hover.png');
+   -fx-graphic: url('../top_imgs/left/venom-top-icon-hover.png');
    -fx-cursor: hand;
 }
 .Ve:pressed {
    -fx-background-color: transparent;
-   -fx-graphic: url('../top_imgs/venom-top-icon.png');
+   -fx-graphic: url('../top_imgs/left/venom-top-icon.png');
    -fx-cursor: hand;
 }
 

@@ -29,36 +29,35 @@ public class MainFrame extends Application {
 
     LeaderRoot leaderRoot;
 
-
     MapSelectionRoot mapSelectionRoot;
     GameOverRoot gameOverRoot;
 
     InstructionsRoot instructionsRoot;
 
+    MediaPlayer mediaPlayer;
+
 
     public void start(Stage stage) throws IOException {
-//        music();
         Controller controller = new Controller(this);
+
+        IntroRoot intro = new IntroRoot();
+        Scene scene = new Scene(intro, 1000, 500);
 
         startingRoot = new StartingRoot(10);
         startingRoot.playButton.setOnAction(e -> onStartButton());
 
-        Scene scene = new Scene(startingRoot, 1000, 500);
-//        MediaPlayer player = new MediaPlayer( new Media(getClass().getResource("marvelintro.mkv").toExternalForm()));
-//        MediaView mediaView = new MediaView(player);
-//
-//        startingRoot.getChildren().add( mediaView);
+        intro.mediaPlayer.setOnEndOfMedia(()-> {
+            Controller.fadeOut(intro, startingRoot);
+            music();
+        });
 
         stage.getIcons().add(new Image("views/gen_imgs/taskBarIcon.jpg"));
         stage.setTitle("Marvel - Ultimate War!");
         stage.setScene(scene);
         stage.show();
         stage.setFullScreen(true);
-//        player.play();
-
     }
 
-    MediaPlayer mediaPlayer;
 
     public void music() {
 
